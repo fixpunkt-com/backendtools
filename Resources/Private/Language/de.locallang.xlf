@@ -5,135 +5,168 @@
 		<body>
 			<trans-unit id="tx_backendtools_domain_model_session">
 				<source>Session</source>
+				<target>Session</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.action">
 				<source>Action</source>
+				<target>Aktion</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value1">
 				<source>Value1</source>
+				<target>Wert 1</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value2">
 				<source>Value2</source>
+				<target>Wert 2</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value3">
 				<source>Value3</source>
+				<target>Wert 3</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value4">
 				<source>Value4</source>
+				<target>Wert 4</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value5">
 				<source>Value5</source>
+				<target>Wert 5</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value6">
 				<source>Value6</source>
+				<target>Wert 6</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.lang">
 				<source>Language (-1: every)</source>
+				<target>Sprache (-1: jede)</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.pageel">
 				<source>Elements per page</source>
+				<target>Elemente per Seite</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.pagestart">
 				<source>Only pages under this page (uid; recursive)</source>
+				<target>Nur Seiten unter dieser Seite (uid; rekursiv)</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.beuser">
 				<source>Beuser</source>
+				<target>BE-Benutzer</target>
 			</trans-unit>
 			<trans-unit id="number_of_files_widget.title">
 				<source>Missing files</source>
+				<target>Fehlende Dateien</target>
 			</trans-unit>
 			<trans-unit id="number_of_files_widget.subtitle">
 				<source>No. of registered missing files in sys_file.</source>
+				<target>Anzahl fehlender Dateien in sys_file.</target>
 			</trans-unit>
 			<trans-unit id="title.list">
 				<source>Pages that use (specific) extensions</source>
+				<target>Seiten, die Extensions benutzen</target>
 			</trans-unit>
 			<trans-unit id="title.latest">
 				<source>Latest (changed) pages and content elements</source>
+				<target>Zuletzt geänderte Seiten/Elemente</target>
 			</trans-unit>
 			<trans-unit id="title.links">
 				<source>Links to a (specific) page</source>
+				<target>Links zu bestimmten Seiten</target>
 			</trans-unit>
 			<trans-unit id="option.only_elements">
 				<source>Show only elements with this</source>
+				<target>Zeige nur Elemente mit</target>
 			</trans-unit>
 			<trans-unit id="or">
 				<source>or</source>
+				<target>oder</target>
 			</trans-unit>
 			<trans-unit id="all">
 				<source>all</source>
+				<target>alle</target>
 			</trans-unit>
 			<trans-unit id="yes">
 				<source>yes</source>
+				<target>ja</target>
 			</trans-unit>
 			<trans-unit id="no">
 				<source>no</source>
+				<target>nein</target>
 			</trans-unit>
 			<trans-unit id="option.only_flexform">
 				<source>Show only elements with this FlexForm value</source>
+				<target>Zeige nur Elemente mit dem Flexform-Wert</target>
 			</trans-unit>
 			<trans-unit id="option.only_ctype">
 				<source>Or exclude elements with this CType values</source>
+				<target>Oder schließe Elemente mit diesem CType aus</target>
 			</trans-unit>
 			<trans-unit id="option.order_by">
 				<source>Order by</source>
+				<target>Sortieren nach</target>
 			</trans-unit>
 			<trans-unit id="show">
 				<source>Show</source>
+				<target>Zeige</target>
 			</trans-unit>
 			<trans-unit id="option.not_visible">
 				<source>only not visible</source>
+				<target>nur unsichtbare</target>
 			</trans-unit>
 			<trans-unit id="option.visible">
 				<source>only visible</source>
+				<target>nur sichtbare</target>
 			</trans-unit>
 			<trans-unit id="pages">
 				<source>Pages</source>
+				<target>Seiten</target>
 			</trans-unit>
 			<trans-unit id="content_elements">
 				<source>Content elements</source>
+				<target>Elemente</target>
 			</trans-unit>
 			<trans-unit id="output">
 				<source>Output</source>
+				<target>Ausgabe</target>
 			</trans-unit>
 			<trans-unit id="search">
 				<source>Search</source>
+				<target>Suchen</target>
 			</trans-unit>
 			<trans-unit id="elements_found">
 				<source>elements found.</source>
+				<target>Elemente gefunden.</target>
 			</trans-unit>
 			<trans-unit id="1star">
-				<source>this is a LIKE 'sword%' search.</source>
+				<target>dies eine LIKE 'sword%' Suche.</target>
 			</trans-unit>
 			<trans-unit id="2star">
-				<source>this is a LIKE '%sword%' search.</source>
+				<target>dies ist eine LIKE '%sword%' Suche.</target>
 			</trans-unit>
 			<trans-unit id="3star">
-				<source>you can use more values, separated by a space.</source>
+				<target>mehrere Werte können durch ein Leerzeichen getrennt werden.</target>
 			</trans-unit>
 			<trans-unit id="4star">
-				<source>this fields are not working with the pagination, because they are not stored in the database.</source>
+				<target>diese Werte funktionieren nicht mit der Paginierung, da sie nicht in der DB gespeichert werden.</target>
 			</trans-unit>
 			<trans-unit id="option.time_zone">
-				<source>Time zone</source>
+				<target>Zeitzone</target>
 			</trans-unit>
 			<trans-unit id="option.modified">
-				<source>Show modified pages/elements since</source>
+				<target>Zeige geänderte Seiten/Elemente seit</target>
 			</trans-unit>
 			<trans-unit id="search_element">
-				<source>Search any content element that contains a link to this page:</source>
+				<target>Suche alle Elemente, die einen Link zu einer Seite enthalten:</target>
 			</trans-unit>
 			<trans-unit id="option.target">
-				<source>Find links with this target ID (UID of a page, e.g. 1)</source>
+				<target>Finde Links mit dieser Ziel-ID (UID der Seite, z.B. 2)</target>
 			</trans-unit>
 			<trans-unit id="option.extensions">
-				<source>search in some extensions too (news, camaliga)</source>
+				<target>suche auch in den news- und camaliga-Elementen</target>
 			</trans-unit>
 			<trans-unit id="news_entries">
-				<source>news entries found.</source>
+				<target>news-Einträge gefunden.</target>
 			</trans-unit>
 			<trans-unit id="camaliga_entries">
-				<source>camaliga entries found.</source>
+				<target>camaliga-Einträge gefunden.</target>
 			</trans-unit>
 		</body>
 	</file>

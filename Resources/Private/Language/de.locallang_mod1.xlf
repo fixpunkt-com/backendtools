@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-06-15T15:56:47Z" product-name="backendtools">
+		<header/>
+		<body>
+			<trans-unit id="mlang_tabs_tab" xml:space="preserve">
+				<source>Backendtools</source>
+				<target>Backendtools</target>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tablabel" xml:space="preserve">
+				<source>Extension &amp; file tools</source>
+				<target>Extension und Datei-Tool</target>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tabdescr" xml:space="preserve">
+				<source>Some admin tools</source>
+				<target>Einige Admin Tools</target>
+			</trans-unit>
+			<trans-unit id="module.list" xml:space="preserve">
+				<source>Show pages that use (specific) extensions</source>
+				<target>Zeige Seiten die Extensions benutzen</target>
+			</trans-unit>
+			<trans-unit id="module.latest" xml:space="preserve">
+				<source>Show latest (changed) pages and content elements</source>
+				<target>Zeige zuletzt geänderte Seiten und Elemente</target>
+			</trans-unit>
+			<trans-unit id="module.pagesearch" xml:space="preserve">
+				<source>Show pages that links to a specific page</source>
+				<target>Zeige Seiten die auf eine Seite verlinken</target>
+			</trans-unit>
+			<trans-unit id="module.layouts" xml:space="preserve">
+				<source>Show pages that change the (backend) layout</source>
+				<target>Zeige Seiten die das BE-Layout ändern</target>
+			</trans-unit>
+			<trans-unit id="module.images" xml:space="preserve">
+				<source>Show images without title- or alt-text</source>
+				<target>Zeige Bilder ohne alt- oder title-Text</target>
+			</trans-unit>
+			<trans-unit id="module.redirects" xml:space="preserve">
+				<source>Import redirect-rules to sys_redirect</source>
+				<target>Importiere Redirect-Regeln nach sys_redirect</target>
+			</trans-unit>
+			<trans-unit id="module.redirectscheck" xml:space="preserve">
+				<source>Check the sys_redirect entries</source>
+				<target>Prüfe die Redirects in sys_redirect</target>
+			</trans-unit>
+			<trans-unit id="module.missing" xml:space="preserve">
+				<source>Show where missing files are used</source>
+				<target>Zeige, wo fehlende Bilder benutzt werden</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

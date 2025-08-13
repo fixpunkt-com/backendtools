@@ -45,145 +45,132 @@ class Session extends AbstractEntity
 
     /**
      * Value 1
-     *
-     * @var int
      */
-    protected $value1 = 0;
+    protected int $value1 = 0;
 
     /**
      * Value 2
-     *
-     * @var int
      */
-    protected $value2 = 0;
+    protected int $value2 = 0;
 
     /**
      * Value 3
-     *
-     * @var int
      */
-    protected $value3 = 0;
+    protected int $value3 = 0;
+
+    /**
+     * Lang
+     */
+    protected int $lang = -1;
 
     /**
      * Value 4
-     *
-     * @var string
      */
-    protected $value4 = '';
+    protected string $value4 = '';
 
     /**
      * Value 5
-     *
-     * @var string
      */
-    protected $value5 = '';
+    protected string $value5 = '';
 
     /**
      * Value 6
-     *
-     * @var string
      */
-    protected $value6 = '';
+    protected string $value6 = '';
 
     /**
      * Elements per page
-     *
-     * @var int
      */
-    protected $pageel = 0;
+    protected int $pageel = 0;
 
     /**
      * Search from this pid
-     *
-     * @var int
      */
-    protected $pagestart = 0;
+    protected int $pagestart = 0;
 
     /**
      * beuser
-     *
-     * @var BackendUser
      */
-    protected $beuser;
+    protected BackendUser $beuser;
 
     /**
      * Returns the action
-     *
-     * @return string $action
      */
-    public function getAction()
+    public function getAction(): string
     {
         return $this->action;
     }
 
     /**
      * Sets the action
-     *
-     * @param string $action
      */
-    public function setAction($action): void
+    public function setAction(string $action): void
     {
         $this->action = $action;
     }
 
     /**
      * Returns the value1
-     *
-     * @return int $value1
      */
-    public function getValue1()
+    public function getValue1(): int
     {
         return $this->value1;
     }
 
     /**
      * Sets the value1
-     *
-     * @param int $value1
      */
-    public function setValue1($value1): void
+    public function setValue1(int $value1): void
     {
         $this->value1 = $value1;
     }
 
     /**
      * Returns the value2
-     *
-     * @return int $value2
      */
-    public function getValue2()
+    public function getValue2(): int
     {
         return $this->value2;
     }
 
     /**
      * Sets the value2
-     *
-     * @param int $value2
      */
-    public function setValue2($value2): void
+    public function setValue2(int $value2): void
     {
         $this->value2 = $value2;
     }
 
     /**
      * Returns the value3
-     *
-     * @return int $value3
      */
-    public function getValue3()
+    public function getValue3(): int
     {
         return $this->value3;
     }
 
     /**
      * Sets the value3
-     *
-     * @param int $value3
      */
-    public function setValue3($value3): void
+    public function setValue3(int $value3): void
     {
         $this->value3 = $value3;
+    }
+
+    /**
+     * Returns the lang
+     */
+    public function getLang(): int
+    {
+        return $this->lang;
+    }
+
+    /**
+     * Sets the lang
+     */
+    public function setLang(int $lang): void
+    {
+        $this->lang = $lang;
     }
 
     /**

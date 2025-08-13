@@ -117,9 +117,12 @@ class SessionRepository extends Repository
      * @param	string	$my_exclude		exclude type
      * @param	int		$my_orderby		order by
      * @param	int		$my_direction	order direction
+     * @param int $my_language language
      * @return array
      */
-    public function getPagesWithExtensions($my_c, $my_p, $my_type, $my_value, $my_flexform, $my_exclude, $my_orderby, $my_direction)
+    public function getPagesWithExtensions(
+        int $my_c, int $my_p, int $my_type, string $my_value, string $my_flexform, string $my_exclude, int $my_orderby, int $my_direction, int $my_language=-1
+    )
     {
         $pages = [];
         //$PageRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
@@ -224,6 +227,13 @@ class SessionRepository extends Repository
             ]);
         }
 
+        // Sprache
+        if ($my_language >= 0) {
+            $res->andWhere(
+                $queryBuilder->expr()->eq('tt_content.sys_language_uid', $queryBuilder->createNamedParameter($my_language)),
+            );
+        }
+
         if ($my_flexform) {
             $res->andWhere(
                 $queryBuilder->expr()->like('tt_content.pi_flexform', $queryBuilder->createNamedParameter('%' . $queryBuilder->escapeLikeWildcards($my_flexform) . '%')),
@@ -296,9 +306,10 @@ class SessionRepository extends Repository
      * @param	int		$my_c			content visibility
      * @param	int		$my_p			pages visibility
      * @param	int		$tstamp		    date as timestamp
+     * @param int $my_language Language
      * @return array
      */
-    public function getLatestContentElements($my_c, $my_p, $tstamp)
+    public function getLatestContentElements(int $my_c, int $my_p, int $tstamp, int $my_language)
     {
         $pages = [];
         $this->siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
@@ -367,6 +378,12 @@ class SessionRepository extends Repository
                     $queryBuilder->expr()->gt('pages.endtime', $queryBuilder->createNamedParameter(time())),
                 ),
             ]);
+        }
+        // Sprache
+        if ($my_language >= 0) {
+            $res->andWhere(
+                $queryBuilder->expr()->eq('tt_content.sys_language_uid', $queryBuilder->createNamedParameter($my_language)),
+            );
         }
         $res -> orderBy('tt_content.tstamp', 'DESC');
         //$res -> setMaxResults(10);
@@ -506,9 +523,10 @@ class SessionRepository extends Repository
      *
      * @param	int		$my_p			pages visibility
      * @param	int		$tstamp		    date as timestamp
+     * @param int $my_language Language
      * @return array
      */
-    public function getLatestPages($my_p, $tstamp)
+    public function getLatestPages(int $my_p, int $tstamp, int $my_language)
     {
         $pages = [];
         $this->siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
@@ -551,6 +569,12 @@ class SessionRepository extends Repository
                     $queryBuilder->expr()->gt('pages.endtime', $queryBuilder->createNamedParameter(time())),
                 ),
             ]);
+        }
+        // Sprache
+        if ($my_language >= 0) {
+            $res->andWhere(
+                $queryBuilder->expr()->eq('pages.sys_language_uid', $queryBuilder->createNamedParameter($my_language)),
+            );
         }
         $res -> orderBy('tstamp', 'DESC');
         //$res -> setMaxResults(10);

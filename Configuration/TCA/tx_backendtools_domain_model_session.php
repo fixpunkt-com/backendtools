@@ -15,7 +15,7 @@ return [
         'iconfile' => 'EXT:backendtools/Resources/Public/Icons/tx_backendtools_domain_model_session.gif',
     ],
     'types' => [
-        '1' => ['showitem' => 'action, value1, value2, value3, value4, value5, value6, pageel, pagestart, beuser'],
+        '1' => ['showitem' => 'action, value1, value2, value3, value4, value5, value6, lang, pageel, pagestart, beuser'],
     ],
     'columns' => [
 
@@ -74,6 +74,15 @@ return [
         'value6' => [
             'exclude' => false,
             'label' => 'LLL:EXT:backendtools/Resources/Private/Language/locallang_db.xlf:tx_backendtools_domain_model_session.value6',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim',
+            ],
+        ],
+        'lang' => [
+            'exclude' => false,
+            'label' => 'LLL:EXT:backendtools/Resources/Private/Language/locallang_db.xlf:tx_backendtools_domain_model_session.lang',
             'config' => [
                 'type' => 'input',
                 'size' => 30,

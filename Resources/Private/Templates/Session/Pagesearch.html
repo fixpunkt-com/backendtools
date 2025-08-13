@@ -6,66 +6,67 @@
 <f:layout name="Module"/>
 <f:section name="Content">
     <f:asset.css identifier="backendtools" href="EXT:backendtools/Resources/Public/Css/Backend.css"/>
-    <h1>Links to a (specific) page</h1>
+    <h1>{f:translate(key: 'title.links')}</h1>
     <f:flashMessages/>
     <f:form action="pagesearch" class="form-inline">
-        <p>Search any content element that contains a link to this page:</p>
+        <p>{f:translate(key: 'search_element')}</p>
         <div class="row">
             <div class="col-md-6">
-
-                <div style="margin: 10px 0;">Show only
+                <div style="margin: 10px 0;"><f:translate key="show" />
                     <label class="checkbox-inline">
-                        <f:form.radio name="my_c" value="1" checked="{my_c} == 1"/>
-                        not visible &nbsp; or
+                        <f:form.radio name="my_p" value="0" checked="{my_p} == 0" />
+                        <f:translate key="all" /> &nbsp;
+                        <f:translate key="or" />
                     </label>
                     <label class="checkbox-inline">
-                        <f:form.radio name="my_c" value="2" checked="{my_c} == 2"/>
-                        visible &nbsp; or
+                        <f:form.radio name="my_p" value="1" checked="{my_p} == 1" />
+                        <f:translate key="option.not_visible" />&nbsp;
+                        <f:translate key="or" />
                     </label>
                     <label class="checkbox-inline">
-                        <f:form.radio name="my_c" value="0" checked="{my_c} == 0"/>
-                        all ... content elements.
-                    </label>
-                </div>
-                <div style="margin: 10px 0;">Show only
-                    <label class="checkbox-inline">
-                        <f:form.radio name="my_p" value="1" checked="{my_p} == 1"/>
-                        not visible &nbsp; or
-                    </label>
-                    <label class="checkbox-inline">
-                        <f:form.radio name="my_p" value="2" checked="{my_p} == 2"/>
-                        visible &nbsp; or
-                    </label>
-                    <label class="checkbox-inline">
-                        <f:form.radio name="my_p" value="0" checked="{my_p} == 0"/>
-                        all ... pages.
+                        <f:form.radio name="my_p" value="2" checked="{my_p} == 2" />
+                        <f:translate key="option.visible" /> ...
+                        <f:translate key="pages" />
                     </label>
                 </div>
-                <div style="margin: 10px 0;">
-                    <f:translate
-                            key="LLL:EXT:backendtools/Resources/Private/Language/locallang.xlf:tx_backendtools_domain_model_session.pagestart"/>
-                    :
-                    <f:form.textfield name="my_recursive" value="{my_recursive}" size="5"/> &nbsp;
+                <div style="margin: 10px 0;"><f:translate key="show" />
+                    <label class="checkbox-inline">
+                        <f:form.radio name="my_c" value="0" checked="{my_c} == 0" />
+                        <f:translate key="all" /> &nbsp;
+                        <f:translate key="or" />
+                    </label>
+                    <label class="checkbox-inline">
+                        <f:form.radio name="my_c" value="1" checked="{my_c} == 1" />
+                        <f:translate key="option.not_visible" />&nbsp;
+                        <f:translate key="or" />
+                    </label>
+                    <label class="checkbox-inline">
+                        <f:form.radio name="my_c" value="2" checked="{my_c} == 2" />
+                        <f:translate key="option.visible" /> ...
+                        <f:translate key="content_elements" />
+                    </label>
+                </div>
+                <div style="margin: 10px 0;"><f:translate key="tx_backendtools_domain_model_session.pagestart" />:
+                    <f:form.textfield name="my_recursive" value="{my_recursive}" size="5" /> &nbsp;
                 </div>
             </div>
             <div class="col-md-6">
 
-                <div style="margin: 10px 0;">Find links with this target ID (UID of a page):
-                    <f:form.textfield name="linksto" value="{linksto}" size="5"/>
-                    (e.g. 1)<br/>
+                <div style="margin: 10px 0;"><f:translate key="option.target" />:
+                    <f:form.textfield name="linksto" value="{linksto}" size="5"/><br>
                     <label class="checkbox-inline">
                         <f:form.checkbox name="exttoo" value="1" checked="{exttoo} == 1"/>
-                        search in some extensions too (news, camaliga)
+                        <f:translate key="option.extensions" />
                     </label>
                 </div>
-                <div style="margin: 10px 0;">Elements per page:
+                <div style="margin: 10px 0;"><f:translate key="tx_backendtools_domain_model_session.pageel" />:
                     <f:form.textfield name="my_page" value="{my_page}" size="5"/> &nbsp;
                 </div>
 
             </div>
         </div>
 
-        <f:form.submit value="search" name="search" class="btn btn-default"/>
+        <f:form.submit value="{f:translate(key: 'search')}" name="search" class="btn btn-default"/>
     </f:form>
     <div>&nbsp;</div>
 
@@ -77,8 +78,8 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th colspan="5" style="text-align:center;background-color:#cfc;color:#000;">Content element</th>
-                    <th colspan="4" style="text-align:center;background-color:#ccf;color:#000;">Page</th>
+                    <th colspan="5" style="text-align:center;background-color:#cfc;color:#000;"><f:translate key="content_elements" /></th>
+                    <th colspan="4" style="text-align:center;background-color:#ccf;color:#000;"><f:translate key="pages" /></th>
                 </tr>
                 <tr>
                     <th>uid</th>
@@ -105,13 +106,13 @@
                     <td>{page.colPos}</td>
                     <td>
                         <f:if condition="{page.ttdeleted} == 1">
-                            <f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then>
-                            <f:else>no</f:else>
+                            <f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then>
+                            <f:else>{f:translate(key: 'no')}</f:else>
                         </f:if>
                         /
                         <f:if condition="{page.tthidden} == 1">
-                            <f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then>
-                            <f:else>no</f:else>
+                            <f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then>
+                            <f:else>{f:translate(key: 'no')}</f:else>
                         </f:if>
                     </td>
                     <td>{page.header}</td>
@@ -127,13 +128,13 @@
                     </td>
                     <td>
                         <f:if condition="{page.pdeleted} == 1">
-                            <f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then>
-                            <f:else>no</f:else>
+                            <f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then>
+                            <f:else>{f:translate(key: 'no')}</f:else>
                         </f:if>
                         /
                         <f:if condition="{page.phidden} == 1">
-                            <f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then>
-                            <f:else>no</f:else>
+                            <f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then>
+                            <f:else>{f:translate(key: 'no')}</f:else>
                         </f:if>
                     </td>
                     <td><a href="{page.domain}{page.slug}" target="extern">{page.title}</a></td>
@@ -145,10 +146,10 @@
                 <f:render partial="Paginator" arguments="{_all}"/>
                 <p>Element {pagination.startRecordNumber} - {pagination.endRecordNumber}.</p>
             </f:if>
-            <p>{pages -> f:count()} content element(s) with links to the pages UID {linksto} found.</p>
+            <p>{pages -> f:count()} <f:translate key="elements_found" /></p>
         </f:then>
         <f:else>
-            <p>0 content elements found!</p>
+            <p>0 <f:translate key="elements_found" /></p>
         </f:else>
     </f:if>
 
@@ -177,13 +178,13 @@
                         <td>{page.sys_language_uid}</td>
                         <td>
                             <f:if condition="{page.deleted} == 1">
-                                <f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then>
-                                <f:else>no</f:else>
+                                <f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then>
+                                <f:else>{f:translate(key: 'no')}</f:else>
                             </f:if>
                             /
                             <f:if condition="{page.hidden} == 1">
-                                <f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then>
-                                <f:else>no</f:else>
+                                <f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then>
+                                <f:else>{f:translate(key: 'no')}</f:else>
                             </f:if>
                         </td>
                         <td>{page.title}</td>
@@ -191,10 +192,10 @@
                     </f:for>
                     </tbody>
                 </table>
-                <p>{news -> f:count()} news entrie(s) with links to the pages UID {linksto} found.</p>
+                <p>{news -> f:count()} <f:translate key="news_entries" /></p>
             </f:then>
             <f:else>
-                <p>0 news entries found.</p>
+                <p>0 <f:translate key="news_entries" /></p>
             </f:else>
         </f:if>
 
@@ -222,13 +223,13 @@
                         <td>{page.sys_language_uid}</td>
                         <td>
                             <f:if condition="{page.deleted} == 1">
-                                <f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then>
-                                <f:else>no</f:else>
+                                <f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then>
+                                <f:else>{f:translate(key: 'no')}</f:else>
                             </f:if>
                             /
                             <f:if condition="{page.hidden} == 1">
-                                <f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then>
-                                <f:else>no</f:else>
+                                <f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then>
+                                <f:else>{f:translate(key: 'no')}</f:else>
                             </f:if>
                         </td>
                         <td>{page.title}</td>
@@ -236,10 +237,10 @@
                     </f:for>
                     </tbody>
                 </table>
-                <p>{camaliga -> f:count()} camaliga entrie(s) with links to the pages UID {linksto} found.</p>
+                <p>{camaliga -> f:count()} <f:translate key="camaliga_entries" /></p>
             </f:then>
             <f:else>
-                <p>0 camaliga entries found.</p>
+                <p>0 <f:translate key="camaliga_entries" /></p>
             </f:else>
         </f:if>
     </f:if>

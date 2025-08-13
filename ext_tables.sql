@@ -10,6 +10,7 @@ CREATE TABLE tx_backendtools_domain_model_session (
 	value4 varchar(255) DEFAULT '' NOT NULL,
 	value5 varchar(255) DEFAULT '' NOT NULL,
 	value6 varchar(255) DEFAULT '' NOT NULL,
+	lang int(11) DEFAULT '-1' NOT NULL,
 	pageel int(11) DEFAULT '0' NOT NULL,
   pagestart int(11) DEFAULT '0' NOT NULL,
 	beuser int(11) unsigned DEFAULT '0',

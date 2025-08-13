@@ -4,6 +4,10 @@
 
 Changelog
 =========
+Version 6.1.0:
+New select option: language.
+New language added: german.
+
 Version 6.0.6:
 Bugfix: bottom-buttons are now working again.
 

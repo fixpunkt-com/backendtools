@@ -1,6 +1,6 @@
 # backendtools
 
-Version 6.0.7
+Version 6.1.0
 
 8 admin tools for extensions, pages, (backend) layouts, slug, redirects, files, images and links:
 extension-list, recent pages and content elements, used (backend) layouts, import redirects, check redirects,
@@ -37,3 +37,7 @@ Version 6.0.6:
 
 Version 6.0.7:
 - New home url: https://github.com/fixpunkt-com/backendtools
+
+Version 6.1.0:
+- New select option: language.
+- New language added: german.

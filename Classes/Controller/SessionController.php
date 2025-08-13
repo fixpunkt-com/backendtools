@@ -96,6 +96,7 @@ class SessionController extends ActionController
             $default->setValue4('');
             $default->setValue5('');
             $default->setValue6('');
+            $default->setLang(-1);
         } else {
             $new = false;
             $default = $result[0];
@@ -179,7 +180,12 @@ class SessionController extends ActionController
         } else {
             $my_recursive = $default->getPagestart();
         }
-
+        if ($this->request->hasArgument('my_language')) {
+            $my_language = (int)($this->request->getArgument('my_language'));		// language
+            $default->setLang($my_language);
+        } else {
+            $my_language = $default->getLang();
+        }
         if ($new) {
             $user = $this->backendUserRepository->findByUid($beuser_id);
             $default->setBeuser($user);
@@ -198,7 +204,8 @@ class SessionController extends ActionController
             $my_flexform,
             $my_exclude,
             $my_orderby,
-            $my_direction
+            $my_direction,
+            $my_language
         );
         $types = $this->sessionRepository->getAllTypes();
         if ($my_recursive > 0) {
@@ -218,6 +225,7 @@ class SessionController extends ActionController
         $this->moduleTemplate->assign('my_page', $my_page);
         $this->moduleTemplate->assign('my_outp', $my_outp);
         $this->moduleTemplate->assign('my_recursive', $my_recursive);
+        $this->moduleTemplate->assign('my_language', $my_language);
         $this->moduleTemplate->assign('my_orderby', $my_orderby);
         $this->moduleTemplate->assign('my_direction', $my_direction);
         $this->moduleTemplate->assign('rows', count($pages));
@@ -249,6 +257,7 @@ class SessionController extends ActionController
             $default->setValue2(0);
             $default->setValue4('01.01.' . date('Y') . ' 00:00:00');
             $default->setValue5('CET');
+            $default->setLang(-1);
         } else {
             $new = false;
             $default = $result[0];
@@ -310,6 +319,12 @@ class SessionController extends ActionController
         } else {
             $my_recursive = $default->getPagestart();
         }
+        if ($this->request->hasArgument('my_language')) {
+            $my_language = (int)($this->request->getArgument('my_language'));		// language
+            $default->setLang($my_language);
+        } else {
+            $my_language = $default->getLang();
+        }
 
         if ($new) {
             $user = $this->backendUserRepository->findByUid($beuser_id);
@@ -339,10 +354,12 @@ class SessionController extends ActionController
             $my_c,
             $my_p,
             $tstamp,
+            $my_language
         );
         $pages2 = $this->sessionRepository->getLatestPages(
             $my_p,
             $tstamp,
+            $my_language
         );
         foreach ($pages2 as $page) {
             $pid = $page['pid'];
@@ -385,6 +402,7 @@ class SessionController extends ActionController
         $this->moduleTemplate->assign('my_page', $my_page);
         $this->moduleTemplate->assign('my_outp', $my_outp);
         $this->moduleTemplate->assign('my_recursive', $my_recursive);
+        $this->moduleTemplate->assign('my_language', $my_language);
         $this->moduleTemplate->assign('rows', count($pages));
         $this->moduleTemplate->assign('pages', $pages);
         $this->moduleTemplate->assign('paginator', $arrayPaginator);

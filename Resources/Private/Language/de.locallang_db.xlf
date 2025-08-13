@@ -5,39 +5,51 @@
 		<body>
 			<trans-unit id="tx_backendtools_domain_model_session">
 				<source>Session</source>
+				<target>Session</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.action">
 				<source>Action</source>
+				<target>Aktion</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value1">
 				<source>Value1</source>
+				<target>Wert 1</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value2">
 				<source>Value2</source>
+				<target>Wert 2</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value3">
 				<source>Value3</source>
+				<target>Wert 3</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value4">
 				<source>Value4</source>
+				<target>Wert 4</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value5">
 				<source>Value5</source>
+				<target>Wert 5</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.value6">
 				<source>Value6</source>
+				<target>Wert 6</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.lang">
 				<source>Language</source>
+				<target>Sprache (-1: jede)</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.pageel">
 				<source>Elements per page</source>
+				<target>Elemente per Seite</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.pagestart">
 				<source>Only pages under this page (uid; recursive)</source>
+				<target>Nur Seiten unter dieser Seite (uid; rekursiv)</target>
 			</trans-unit>
 			<trans-unit id="tx_backendtools_domain_model_session.beuser">
 				<source>Backenduser</source>
+				<target>BE-Benutzer</target>
 			</trans-unit>
 		</body>
 	</file>

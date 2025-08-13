@@ -8,16 +8,17 @@
 <f:section name="Content">
 	<f:asset.css identifier="backendtools" href="EXT:backendtools/Resources/Public/Css/Backend.css"/>
 	<f:asset.script identifier="backendtools" src="EXT:backendtools/Resources/Public/Js/List.js"/>
-<h1>Pages that use (specific) extensions</h1>
+<h1><f:translate key="title.list" /></h1>
 <f:flashMessages />
 <f:form action="list" class="form-inline">
 <div class="row"><div class="col-md-6">
-	<div style="margin: 10px 0;">Show only elements with this
+	<div style="margin: 10px 0;"><f:translate key="option.only_elements" />
 		<f:form.select name="my_value3001" options="{types}" id="mytype3001" />
 		<div style="margin: 5px 0;">
 		(
 		<label class="checkbox-inline">
-			<f:form.radio name="my_type" value="1" checked="{my_type} == 1" id="mytype1" /> list_type  &nbsp; or
+			<f:form.radio name="my_type" value="1" checked="{my_type} == 1" id="mytype1" /> list_type  &nbsp;
+            <f:translate key="or" />
 		</label>
 		<label class="checkbox-inline">
 			<f:form.radio name="my_type" value="2" checked="{my_type} == 2" id="mytype2" /> CType*:
@@ -26,49 +27,64 @@
 		)
 		</div>
 	</div>
-	<div style="margin: 10px 0;">Show only elements with this FlexForm value**:
+	<div style="margin: 10px 0;"><f:translate key="option.only_flexform" />**:
 		<f:form.textfield name="my_flexform" value="{my_flexform}" />
 	</div>
-	<div style="margin: 10px 0;">Or exclude elements with this CType values***:
+	<div style="margin: 10px 0;"><f:translate key="option.only_ctype" />***:
 		<f:form.textfield name="my_exclude" value="{my_exclude}" /> &nbsp;
 	</div>
-	<div style="margin: 10px 0;">Order by****:
+	<div style="margin: 10px 0;"><f:translate key="option.order_by" />****:
 		<f:form.select name="my_orderby" options="{0: 'pid', 1: 'uid', 2: 'sys_language_uid', 3: 'colPos', 4: 'header', 5: 'CType', 6: 'list_type', 7: 'page title'}" value="{my_orderby}" /> &nbsp;
 		<f:form.select name="my_direction" options="{0: 'ascending', 1: 'descending'}" value="{my_direction}" /> &nbsp;
 	</div>
 </div><div class="col-md-6">
-
-	<div style="margin: 10px 0;">Show
+	<div style="margin: 10px 0;"><f:translate key="show" />
 	  <label class="checkbox-inline">
-		<f:form.radio name="my_p" value="0" checked="{my_p} == 0" /> all &nbsp; or
+		<f:form.radio name="my_p" value="0" checked="{my_p} == 0" />
+          <f:translate key="all" /> &nbsp;
+          <f:translate key="or" />
 	  </label>
 	  <label class="checkbox-inline">
-		<f:form.radio name="my_p" value="1" checked="{my_p} == 1" /> only not visible &nbsp; or
+		<f:form.radio name="my_p" value="1" checked="{my_p} == 1" />
+          <f:translate key="option.not_visible" />&nbsp;
+          <f:translate key="or" />
 	  </label>
 	  <label class="checkbox-inline">
-		<f:form.radio name="my_p" value="2" checked="{my_p} == 2" /> only visible ... pages
-	  </label>
-	</div>
-	<div style="margin: 10px 0;">Show
-	  <label class="checkbox-inline">
-		<f:form.radio name="my_c" value="0" checked="{my_c} == 0" /> all &nbsp; or
-	  </label>
-	  <label class="checkbox-inline">
-		<f:form.radio name="my_c" value="1" checked="{my_c} == 1" /> only not visible &nbsp; or
-	  </label>
-	  <label class="checkbox-inline">
-		<f:form.radio name="my_c" value="2" checked="{my_c} == 2" /> only visible ... content-elements
+		<f:form.radio name="my_p" value="2" checked="{my_p} == 2" />
+          <f:translate key="option.visible" /> ...
+          <f:translate key="pages" />
 	  </label>
 	</div>
-	<div style="margin: 10px 0;"><f:translate key="LLL:EXT:backendtools/Resources/Private/Language/locallang.xlf:tx_backendtools_domain_model_session.pagestart" />:
+	<div style="margin: 10px 0;"><f:translate key="show" />
+	  <label class="checkbox-inline">
+		<f:form.radio name="my_c" value="0" checked="{my_c} == 0" />
+          <f:translate key="all" /> &nbsp;
+          <f:translate key="or" />
+	  </label>
+	  <label class="checkbox-inline">
+		<f:form.radio name="my_c" value="1" checked="{my_c} == 1" />
+          <f:translate key="option.not_visible" />&nbsp;
+          <f:translate key="or" />
+	  </label>
+	  <label class="checkbox-inline">
+		<f:form.radio name="my_c" value="2" checked="{my_c} == 2" />
+          <f:translate key="option.visible" /> ...
+          <f:translate key="content_elements" />
+	  </label>
+	</div>
+	<div style="margin: 10px 0;"><f:translate key="tx_backendtools_domain_model_session.pagestart" />:
 		<f:form.textfield name="my_recursive" value="{my_recursive}" size="5" /> &nbsp;
 	</div>
-	<div style="margin: 10px 0;">Elements per page:
+    <div style="margin: 10px 0;"><f:translate key="tx_backendtools_domain_model_session.lang" />:
+        <f:form.textfield name="my_language" value="{my_language}" size="5" /> &nbsp;
+    </div>
+	<div style="margin: 10px 0;"><f:translate key="tx_backendtools_domain_model_session.pageel" />:
     	<f:form.textfield name="my_page" value="{my_page}" size="5" /> &nbsp;
     </div>
-	<div style="margin: 10px 0;">Output:
+	<div style="margin: 10px 0;"><f:translate key="output" />:
 	  <label class="checkbox-inline">
-		<f:form.radio name="my_outp" value="0" checked="{my_outp} == 0" /> HTML &nbsp; or
+		<f:form.radio name="my_outp" value="0" checked="{my_outp} == 0" /> HTML &nbsp;
+          <f:translate key="or" />
 	  </label>
 	  <label class="checkbox-inline">
 		<f:form.radio name="my_outp" value="1" checked="{my_outp} == 1" /> CSV
@@ -76,7 +92,7 @@
 	</div>
 </div></div>
 
-	<f:form.submit value="search" class="btn btn-default" />
+	<f:form.submit value="{f:translate(key: 'search')}" class="btn btn-default" />
 </f:form>
 <div>&nbsp;</div>
 
@@ -85,7 +101,7 @@
 	<f:if condition="{my_outp} == 1">
 	<f:then>
 		<textarea name="dummy" rows="12" cols="120">
-Content element;;;;;;;;;Page;;
+<f:translate key="content_elements" />;;;;;;;;;<f:translate key="pages" />;;
 uid;lang.;colPos;deleted;hidden;header;CType;list_type;FlexForm actions;uid;deleted;hidden;title;link
 <f:for each="{pages}" as="page" iteration="iterator">{page.uid};{page.sys_language_uid};{page.colPos};{page.ttdeleted};{page.tthidden};"{page.csvheader}";{page.CType};{page.list_type};"<f:format.raw>{page.actions}</f:format.raw>";{page.pid};{page.pdeleted};{page.phidden};"{page.csvtitle}";{page.domain}{page.slug}
 </f:for></textarea>
@@ -97,8 +113,8 @@ uid;lang.;colPos;deleted;hidden;header;CType;list_type;FlexForm actions;uid;dele
 		<table class="table">
 		<thead>
 			<tr>
-				<th colspan="8" style="text-align:center;background-color:#cfc;color:#000;">Content element</th>
-				<th colspan="4" style="text-align:center;background-color:#ccf;color:#000;">Page</th>
+				<th colspan="8" style="text-align:center;background-color:#cfc;color:#000;"><f:translate key="content_elements" /></th>
+				<th colspan="4" style="text-align:center;background-color:#ccf;color:#000;"><f:translate key="pages" /></th>
 			</tr>
 			<tr>
 				<th>uid</th>
@@ -125,8 +141,8 @@ uid;lang.;colPos;deleted;hidden;header;CType;list_type;FlexForm actions;uid;dele
 					</td>
 					<td>{page.sys_language_uid}</td>
 					<td>{page.colPos}</td>
-					<td><f:if condition="{page.ttdeleted} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then><f:else>no</f:else></f:if> / 
-						<f:if condition="{page.tthidden} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then><f:else>no</f:else></f:if></td>
+					<td><f:if condition="{page.ttdeleted} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then><f:else>{f:translate(key: 'no')}</f:else></f:if> /
+						<f:if condition="{page.tthidden} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then><f:else>{f:translate(key: 'no')}</f:else></f:if></td>
 					<td>{page.header}</td>
 					<td>{page.CType}</td>
 					<td>{page.list_type}</td>
@@ -140,8 +156,8 @@ uid;lang.;colPos;deleted;hidden;header;CType;list_type;FlexForm actions;uid;dele
 		      			</a>
 						{page.pid}
 					</td>
-					<td><f:if condition="{page.pdeleted} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then><f:else>no</f:else></f:if> / 
-						<f:if condition="{page.phidden} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">yes</span></f:then><f:else>no</f:else></f:if></td>
+					<td><f:if condition="{page.pdeleted} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then><f:else>{f:translate(key: 'no')}</f:else></f:if> /
+						<f:if condition="{page.phidden} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then><f:else>{f:translate(key: 'no')}</f:else></f:if></td>
 					<td><a href="{page.domain}{page.slug}" target="extern">{page.title}</a></td>
 				</tr>
 			</f:for>
@@ -153,16 +169,16 @@ uid;lang.;colPos;deleted;hidden;header;CType;list_type;FlexForm actions;uid;dele
 		</f:if>
 	</f:else>
 	</f:if>
-	<p>{pages -> f:count()} element(s) found.</p>
+	<p>{pages -> f:count()} <f:translate key="elements_found" /></p>
 </f:then>
 <f:else>
-	<p>0 elements found!</p>
+	<p>0 <f:translate key="elements_found" /></p>
 </f:else>
 </f:if>
-<p><i>*: this is a LIKE 'sword%' search.<br>
-	**: this is a LIKE '%sword%' search.<br>
-	***: you can use more values, separated by a space.<br>
-	****: this fields are not working with the pagination, because they are not stored in the database.</i></p>
+<p><i>*: <f:translate key="1star" /><br>
+	**: <f:translate key="2star" /><br>
+	***: <f:translate key="3star" /><br>
+	****: <f:translate key="4star" /></i></p>
 </f:section>
 
 </html>
