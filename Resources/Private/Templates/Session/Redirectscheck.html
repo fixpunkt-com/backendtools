@@ -7,13 +7,13 @@
 <f:layout name="Module" />
 <f:section name="Content">
 	<f:asset.css identifier="backendtools" href="EXT:backendtools/Resources/Public/Css/Backend.css"/>
-	<h1>Check sys_redirect entries for error targets</h1>
+	<h1><f:translate key="title.redirectscheck" /></h1>
 	<f:flashMessages />
 	<f:form action="redirectscheck" class="form-inline">
 		<div class="row"><div class="col-md-3">
-			<div style="margin: 10px 0;">Use
+			<div style="margin: 10px 0;"><f:translate key="use" />
 				<label class="checkbox-inline">
-					<f:form.radio name="my_http" value="1" checked="{my_http} == 1" /> http &nbsp; or
+					<f:form.radio name="my_http" value="1" checked="{my_http} == 1" /> http &nbsp; <f:translate key="or" />
 				</label>
 				<label class="checkbox-inline">
 					<f:form.radio name="my_http" value="0" checked="{my_http} == 0" /> https.
@@ -22,24 +22,24 @@
 		</div><div class="col-md-6">
 			<div style="margin: 10px 0;">Status:
 				<label class="checkbox-inline">
-					<f:form.radio name="my_error" value="0" checked="{my_error} == 0" /> all or
+					<f:form.radio name="my_error" value="0" checked="{my_error} == 0" /> <f:translate key="all" /> <f:translate key="or" />
 				</label>
 				<label class="checkbox-inline">
-					<f:form.radio name="my_error" value="1" checked="{my_error} == 1" /> t3-link-error or
+					<f:form.radio name="my_error" value="1" checked="{my_error} == 1" /> t3-link-error <f:translate key="or" />
 				</label>
 				<label class="checkbox-inline">
-					<f:form.radio name="my_error" value="300" checked="{my_error} == 300" /> 3xx or
+					<f:form.radio name="my_error" value="300" checked="{my_error} == 300" /> 3xx <f:translate key="or" />
 				</label>
 				<label class="checkbox-inline">
 					<f:form.radio name="my_error" value="400" checked="{my_error} == 400" /> 4xx error.
 				</label>
 			</div>
 		</div><div class="col-md-3">
-			<div style="margin: 10px 0;">Check up to
-				<f:form.textfield name="my_page" value="{my_page}" size="3" /> redirects per page
+			<div style="margin: 10px 0;">{f:translate(key: 'option.checkup1')}
+				<f:form.textfield name="my_page" value="{my_page}" size="3" /> {f:translate(key: 'option.checkup2')}
 			</div>
 		</div></div>
-		<f:form.submit value="Set defaults" name="setting" class="btn btn-default" />
+		<f:form.submit value="{f:translate(key: 'search')}" name="setting" class="btn btn-default" />
 	</f:form>
 	<div>&nbsp;</div>
     <f:if condition="{settings.pagebrowser.insertAbove} && ({paginator.numberOfPages} > 1)">
@@ -49,7 +49,7 @@
 		<f:form.hidden name="currentPage" value="{page}" />
 		<f:if condition="{redirects -> f:count()} > 0">
 			<f:then>
-				<p>{redirects -> f:count()} redirects found:</p>
+				<p>{redirects -> f:count()} {f:translate(key: 'redirects_found')}:</p>
 				<table class="table">
 					<thead>
 					<tr>
@@ -85,7 +85,7 @@
 				</table>
                 <br>
                 <p>
-                <f:form.submit name="import" value="Delete selected redirects" class="btn btn-primary" />
+                <f:form.submit name="import" value="{f:translate(key: 'button.delete_redirects')}" class="btn btn-primary" />
                 </p>
 			</f:then>
 			<f:else>

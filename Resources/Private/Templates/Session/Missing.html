@@ -6,37 +6,35 @@
 <f:layout name="Module"/>
 <f:section name="Content">
     <f:asset.css href="EXT:backendtools/Resources/Public/Css/Backend.css" identifier="backendtools"/>
-    <h1>Find missing files/images and show where they are used</h1>
+    <h1><f:translate key="title.missing" /></h1>
     <f:flashMessages/>
     <f:form action="missing" class="form-inline">
         <div class="row">
             <div class="col-md-8">
-                <div style="margin: 10px 0;">Show images used only in tt_content:
+                <div style="margin: 10px 0;"><f:translate key="option.show_images" />:
                     <label class="checkbox-inline">
                         <f:form.radio checked="{img_other} == 0" name="img_other" value="0"/>
-                        yes or
+                        {f:translate(key: 'yes')} {f:translate(key: 'or')}
                     </label>
                     <label class="checkbox-inline">
                         <f:form.radio checked="{img_other} == 1" name="img_other" value="1"/>
-                        no.
+                        {f:translate(key: 'no')}.
                     </label>
                 </div>
                 <div style="margin: 10px 0;">
-                    <f:translate
-                        key="LLL:EXT:backendtools/Resources/Private/Language/locallang.xlf:tx_backendtools_domain_model_session.pagestart"/>
-                    :
+                    <f:translate key="tx_backendtools_domain_model_session.pagestart"/>:
                     <f:form.textfield name="my_recursive" size="5" value="{my_recursive}"/> &nbsp;
                 </div>
             </div>
             <div class="col-md-4">
 
-                <div style="margin: 10px 0;">Elements per page:
+                <div style="margin: 10px 0;"><f:translate key="tx_backendtools_domain_model_session.pageel"/>:
                     <f:form.textfield name="my_page" size="5" value="{my_page}"/> &nbsp;
                 </div>
 
             </div>
         </div>
-        <f:form.submit class="btn btn-default" name="search" value="search"/>
+        <f:form.submit class="btn btn-default" name="search" value="{f:translate(key: 'search')}" />
         <div>&nbsp;</div>
     </f:form>
     <f:if condition="{images -> f:count()} > 0">
@@ -90,10 +88,10 @@
                     </tbody>
                 </table>
 
-                <p>{images -> f:count()} image(s)/file(s) found, that are used.</p>
+                <p>{images -> f:count()} <f:translate key="image_entries"/></p>
 
                 <f:form.submit class="btn btn-primary"
-                               name="delthatimage1" value="Delete selected entry in sys_file, sys_file_metadata and sys_file_reference"/>
+                               name="delthatimage1" value="{f:translate(key: 'button.delete1')}"/>
                 <br><br>
             </f:form>
 
@@ -103,13 +101,13 @@
             </f:if>
         </f:then>
         <f:else>
-            <p>0 images/files found, that are used.</p>
+            <p>0 <f:translate key="image_entries"/></p>
         </f:else>
     </f:if>
 
     <f:if condition="{count} > 0">
         <f:form action="missing" class="form-inline">
-            <h4>{count} missing file(s) is/are not used (in tt_content):</h4>
+            <h4>{count} <f:translate key="image_entries_not_used"/>:</h4>
 
             <table class="table">
                 <thead>
@@ -151,10 +149,10 @@
             </table>
 
             <f:form.submit class="btn btn-primary"
-                           name="delthatimage2" value="Delete selected entry in sys_file, sys_file_metadata and sys_file_reference"/>
+                           name="delthatimage2" value="{f:translate(key: 'button.delete1')}"/>
             <f:form.submit
                 class="btn btn-secondary"
-                name="delallimages" value="Delete all not used (in tt_content) image-entries in sys_file, sys_file_metadata and sys_file_reference"/>
+                name="delallimages" value="{f:translate(key: 'button.delete2')}"/>
         </f:form>
     </f:if>
 </f:section>

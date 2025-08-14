@@ -71,9 +71,34 @@
 				<source>Links to a (specific) page</source>
 				<target>Links zu bestimmten Seiten</target>
 			</trans-unit>
+			<trans-unit id="title.images">
+				<source>Find used images without title- or alt-text</source>
+				<target>Finde benutzte Bilder ohne title- oder alt-Text</target>
+			</trans-unit>
+			<trans-unit id="title.missing">
+				<target>Finde fehlende Bilder/Dateien und zeige, wo sie benutzt werden</target>
+			</trans-unit>
+			<trans-unit id="title.layouts">
+				<target>Zeige wo (Backend-)Layouts benutzt werden</target>
+			</trans-unit>
+			<trans-unit id="title.redirects">
+				<target>Füge einfache .htaccess-Weiterleitungen zu sys_redirects hinzu</target>
+			</trans-unit>
+			<trans-unit id="title.redirectscheck">
+				<target>Checke sys_redirect Einträge auf fehlerhafte Ziele</target>
+			</trans-unit>
 			<trans-unit id="option.only_elements">
 				<source>Show only elements with this</source>
 				<target>Zeige nur Elemente mit</target>
+			</trans-unit>
+			<trans-unit id="option.checkup1">
+				<target>Prüfe bis zu</target>
+			</trans-unit>
+			<trans-unit id="option.checkup2">
+				<target>Weiterleitungen pro Seite</target>
+			</trans-unit>
+			<trans-unit id="use">
+				<target>Benutze</target>
 			</trans-unit>
 			<trans-unit id="or">
 				<source>or</source>
@@ -131,9 +156,15 @@
 				<source>Search</source>
 				<target>Suchen</target>
 			</trans-unit>
+			<trans-unit id="search_for">
+				<target>Suche nach</target>
+			</trans-unit>
 			<trans-unit id="elements_found">
 				<source>elements found.</source>
 				<target>Elemente gefunden.</target>
+			</trans-unit>
+			<trans-unit id="redirects_found">
+				<target>Weiterleitung(en) gefunden</target>
 			</trans-unit>
 			<trans-unit id="1star">
 				<target>dies eine LIKE 'sword%' Suche.</target>
@@ -146,6 +177,12 @@
 			</trans-unit>
 			<trans-unit id="4star">
 				<target>diese Werte funktionieren nicht mit der Paginierung, da sie nicht in der DB gespeichert werden.</target>
+			</trans-unit>
+			<trans-unit id="without">
+				<target>ohne</target>
+			</trans-unit>
+			<trans-unit id="with">
+				<target>mit</target>
 			</trans-unit>
 			<trans-unit id="option.time_zone">
 				<target>Zeitzone</target>
@@ -167,6 +204,39 @@
 			</trans-unit>
 			<trans-unit id="camaliga_entries">
 				<target>camaliga-Einträge gefunden.</target>
+			</trans-unit>
+			<trans-unit id="option.show_images">
+				<target>Zeige nur Bilder aus tt_content</target>
+			</trans-unit>
+			<trans-unit id="option.show_images2">
+				<target>Zeige Bilder</target>
+			</trans-unit>
+			<trans-unit id="image_entries">
+				<target>Bilder/Dateien-Einträge gefunden, die benutzt werden.</target>
+			</trans-unit>
+			<trans-unit id="image_entries_not_used">
+				<target>fehlende Bilder/Dateien werden nicht benutzt (in tt_content)</target>
+			</trans-unit>
+			<trans-unit id="images_found">
+				<target>Bild(er) gefunden.</target>
+			</trans-unit>
+			<trans-unit id="replacement_done">
+				<target>Ersetzungen durchgeführt</target>
+			</trans-unit>
+			<trans-unit id="button.delete1">
+				<target>Lösche ausgewählte Einträge in sys_file, sys_file_metadata und sys_file_reference</target>
+			</trans-unit>
+			<trans-unit id="button.delete2">
+				<target>Lösche alle nicht benutzen (in tt_content) Bilder-Einträge in sys_file, sys_file_metadata und sys_file_reference</target>
+			</trans-unit>
+			<trans-unit id="button.replace1">
+				<target>Ersetze leeres alt-tag (mit title-tag oder Bildname) in sys_file_reference</target>
+			</trans-unit>
+			<trans-unit id="button.replace2">
+				<target>Ersetze leeres title-tag (mit alt-tag oder Bildname) in sys_file_reference</target>
+			</trans-unit>
+			<trans-unit id="button.delete_redirects">
+				<target>Lösche ausgewählte Weiterleitungen</target>
 			</trans-unit>
 		</body>
 	</file>

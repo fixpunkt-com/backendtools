@@ -54,8 +54,32 @@
 			<trans-unit id="title.links">
 				<source>Links to a (specific) page</source>
 			</trans-unit>
+			<trans-unit id="title.missing">
+				<source>Find missing files/images and show where they are used</source>
+			</trans-unit>
+			<trans-unit id="title.images">
+				<source>Find used images without title- or alt-text</source>
+			</trans-unit>
+			<trans-unit id="title.layouts">
+				<source>Show where (backend) layouts are used</source>
+			</trans-unit>
+			<trans-unit id="title.redirects">
+				<source>Add simple .htaccess-redirects to the table sys_redirect</source>
+			</trans-unit>
+			<trans-unit id="title.redirectscheck">
+				<source>Check sys_redirect entries for error targets</source>
+			</trans-unit>
 			<trans-unit id="option.only_elements">
 				<source>Show only elements with this</source>
+			</trans-unit>
+			<trans-unit id="option.checkup1">
+				<source>Check up to</source>
+			</trans-unit>
+			<trans-unit id="option.checkup2">
+				<source>redirects per page</source>
+			</trans-unit>
+			<trans-unit id="use">
+				<source>Use</source>
 			</trans-unit>
 			<trans-unit id="or">
 				<source>or</source>
@@ -99,8 +123,14 @@
 			<trans-unit id="search">
 				<source>Search</source>
 			</trans-unit>
+			<trans-unit id="search_for">
+				<source>Search for</source>
+			</trans-unit>
 			<trans-unit id="elements_found">
 				<source>elements found.</source>
+			</trans-unit>
+			<trans-unit id="redirects_found">
+				<source>redirects found</source>
 			</trans-unit>
 			<trans-unit id="1star">
 				<source>this is a LIKE 'sword%' search.</source>
@@ -113,6 +143,12 @@
 			</trans-unit>
 			<trans-unit id="4star">
 				<source>this fields are not working with the pagination, because they are not stored in the database.</source>
+			</trans-unit>
+			<trans-unit id="without">
+				<source>without</source>
+			</trans-unit>
+			<trans-unit id="with">
+				<source>with</source>
 			</trans-unit>
 			<trans-unit id="option.time_zone">
 				<source>Time zone</source>
@@ -134,6 +170,39 @@
 			</trans-unit>
 			<trans-unit id="camaliga_entries">
 				<source>camaliga entries found.</source>
+			</trans-unit>
+			<trans-unit id="option.show_images">
+				<source>Show images used only in tt_content</source>
+			</trans-unit>
+			<trans-unit id="option.show_images2">
+				<source>Show images</source>
+			</trans-unit>
+			<trans-unit id="image_entries">
+				<source>image(s)/file(s) found, that are used.</source>
+			</trans-unit>
+			<trans-unit id="image_entries_not_used">
+				<source>missing file(s) is/are not used (in tt_content)</source>
+			</trans-unit>
+			<trans-unit id="images_found">
+				<source>image(s) found.</source>
+			</trans-unit>
+			<trans-unit id="replacement_done">
+				<source>replacement(s) done</source>
+			</trans-unit>
+			<trans-unit id="button.delete1">
+				<source>Delete selected entry in sys_file, sys_file_metadata and sys_file_reference</source>
+			</trans-unit>
+			<trans-unit id="button.delete2">
+				<source>Delete all not used (in tt_content) image-entries in sys_file, sys_file_metadata and sys_file_reference</source>
+			</trans-unit>
+			<trans-unit id="button.replace1">
+				<source>Replace empty alt-tag (with the title-tag or image name) in sys_file_reference</source>
+			</trans-unit>
+			<trans-unit id="button.replace2">
+				<source>Replace empty title-tag (with the alt-tag or image name) in sys_file_reference</source>
+			</trans-unit>
+			<trans-unit id="button.delete_redirects">
+				<source>Delete selected redirects</source>
 			</trans-unit>
 		</body>
 	</file>

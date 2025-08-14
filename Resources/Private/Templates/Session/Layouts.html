@@ -7,62 +7,62 @@
 <f:layout name="Module"/>
 <f:section name="Content">
     <f:asset.css identifier="backendtools" href="EXT:backendtools/Resources/Public/Css/Backend.css"/>
-    <h1>Show where (backend) layouts are used</h1>
+    <h1><f:translate key="title.layouts" /></h1>
     <f:flashMessages/>
     <f:form action="layouts" class="form-inline">
         <div class="row">
             <div class="col-md-6">
 
-                <div style="margin: 10px 0;">Elements per page:
-                    <f:form.textfield name="my_page" value="{my_page}" size="5"/> &nbsp;
+                <div style="margin: 10px 0;"><f:translate key="tx_backendtools_domain_model_session.pagestart" />:
+                    <f:form.textfield name="my_recursive" value="{my_recursive}" size="5" /> &nbsp;
                 </div>
-                <div style="margin: 10px 0;">
-                    <f:translate
-                            key="LLL:EXT:backendtools/Resources/Private/Language/locallang.xlf:tx_backendtools_domain_model_session.pagestart"/>:
-                    <f:form.textfield name="my_recursive" value="{my_recursive}" size="5"/> &nbsp;
+                <div style="margin: 10px 0;"><f:translate key="tx_backendtools_domain_model_session.pageel" />:
+                    <f:form.textfield name="my_page" value="{my_page}" size="5" /> &nbsp;
                 </div>
 
             </div>
             <div class="col-md-6">
 
-                <div style="margin: 10px 0;">Show
+                <div style="margin: 10px 0;"><f:translate key="show" />
                     <label class="checkbox-inline">
-                        <f:form.radio name="my_p" value="0" checked="{my_p} == 0"/>
-                        all &nbsp; or
+                        <f:form.radio name="my_p" value="0" checked="{my_p} == 0" />
+                        <f:translate key="all" /> &nbsp;
+                        <f:translate key="or" />
                     </label>
                     <label class="checkbox-inline">
-                        <f:form.radio name="my_p" value="1" checked="{my_p} == 1"/>
-                        only not visible &nbsp; or
+                        <f:form.radio name="my_p" value="1" checked="{my_p} == 1" />
+                        <f:translate key="option.not_visible" />&nbsp;
+                        <f:translate key="or" />
                     </label>
                     <label class="checkbox-inline">
-                        <f:form.radio name="my_p" value="2" checked="{my_p} == 2"/>
-                        only visible ... pages
+                        <f:form.radio name="my_p" value="2" checked="{my_p} == 2" />
+                        <f:translate key="option.visible" /> ...
+                        <f:translate key="pages" />
                     </label>
                 </div>
-                <div style="margin: 10px 0;">Search for
+                <div style="margin: 10px 0;"><f:translate key="search_for" />
                     <label class="checkbox-inline">
                         <f:form.radio name="my_value" value="0" checked="{my_value} == 0"/>
-                        layouts &nbsp; or
+                        layouts &nbsp; <f:translate key="or" />
                     </label>
                     <label class="checkbox-inline">
                         <f:form.radio name="my_value" value="1" checked="{my_value} == 1"/>
                         backend layouts
                     </label>
                 </div>
-                <div style="margin: 10px 0;">Output:
+                <div style="margin: 10px 0;"><f:translate key="output" />:
                     <label class="checkbox-inline">
-                        <f:form.radio name="my_outp" value="0" checked="{my_outp} == 0"/>
-                        HTML &nbsp; or
+                        <f:form.radio name="my_outp" value="0" checked="{my_outp} == 0" /> HTML &nbsp;
+                        <f:translate key="or" />
                     </label>
                     <label class="checkbox-inline">
-                        <f:form.radio name="my_outp" value="1" checked="{my_outp} == 1"/>
-                        CSV
+                        <f:form.radio name="my_outp" value="1" checked="{my_outp} == 1" /> CSV
                     </label>
                 </div>
             </div>
         </div>
 
-        <f:form.submit value="search" class="btn btn-default"/>
+        <f:form.submit value="{f:translate(key: 'search')}" class="btn btn-default"/>
     </f:form>
     <div>&nbsp;</div>
 
@@ -71,7 +71,7 @@
             <f:if condition="{my_outp} == 1">
                 <f:then>
 		<textarea name="dummy" rows="12" cols="120">
-Page;;;;;;Layouts;;
+<f:translate key="pages" />;;;;;;Layouts;;
 uid;sys_language_uid;tstamp;deleted;hidden;title;layout;backend_layout;backend_layout_next_level
 <f:for each="{pages}" as="page" iteration="iterator">{page.pid};{page.sys_language_uid};"<f:format.date format='d.m.Y H:i:s'>{page.ptstamp}</f:format.date>";{page.pdeleted};{page.phidden};"{page.csvtitle}";{page.layout};{page.backend_layout};{page.backend_layout_next_level}
 </f:for></textarea>
@@ -83,7 +83,7 @@ uid;sys_language_uid;tstamp;deleted;hidden;title;layout;backend_layout;backend_l
                     <table class="table">
                         <thead>
                         <tr>
-                            <th colspan="5" style="text-align:center;background-color:#cfc;color:#000;">Page</th>
+                            <th colspan="5" style="text-align:center;background-color:#cfc;color:#000;"><f:translate key="pages" /></th>
                             <th colspan="3" style="text-align:center;background-color:#ccf;color:#000;">Layout</th>
                         </tr>
                         <tr>
@@ -139,10 +139,10 @@ uid;sys_language_uid;tstamp;deleted;hidden;title;layout;backend_layout;backend_l
                     </f:if>
                 </f:else>
             </f:if>
-            <p>{pages -> f:count()} element(s) found.</p>
+            <p>{pages -> f:count()} <f:translate key="elements_found" /></p>
         </f:then>
         <f:else>
-            <p>0 elements found!</p>
+            <p>0 <f:translate key="elements_found" /></p>
         </f:else>
     </f:if>
 </f:section>
