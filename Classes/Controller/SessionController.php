@@ -1001,37 +1001,41 @@ class SessionController extends ActionController
                     }
                     $row = preg_replace('/[ ]{2,}|[\t]/', ' ', trim($row));	// tab und/oder mehrere Spaces zu einem Space umwandeln
                     $rewrites = explode(' ', (string)$row);
-                    preg_match('/R=(\d+)/', $rewrites[3], $treffer);
-                    $statuscode = $treffer[1];
-                    if (!$statuscode) {
-                        $statuscode = (int)$defaultstatuscode;
-                    }
-                    if ($rewrites[1] && (!str_starts_with($rewrites[1], '^/')) && (str_starts_with($rewrites[1], '^'))) {
-                        if ($regexp) {
-                            $rewrites[1] = '^/' . substr($rewrites[1], 1);    // aus ^xyz wird ^/xyz
-                        } else {
-                            $rewrites[1] = '/' . substr($rewrites[1], 1);    // aus ^xyz wird /xyz
+                    if (isset($rewrites[3])) {
+                        preg_match('/R=(\d+)/', $rewrites[3], $treffer);
+                        $statuscode = (isset($treffer[1])) ? $treffer[1] : '';
+                        if (!$statuscode) {
+                            $statuscode = (int)$defaultstatuscode;
                         }
-                    }
-                    if ($regexp) {
-                        $rewrites[1] = '#' . $rewrites[1] . '#';        // TYPO3 will das so
-                    }
-                    if ($rewrites[1] && $rewrites[2] && (strlen($rewrites[1]) > 2)) {
-                        if ($method) {
-                            if ($this->sessionRepository->addRedirect($rewrites[1], $rewrites[2], $regexp, $statuscode, $beuser_id)) {
-                                $content .= '<tr><td>' . $rewrites[1] . '</td><td style="color:#00ff00;"> to </td><td>' . $rewrites[2] . '</td><td>' . $statuscode . "</td></tr>\n";
-                                $success++;
+                        if ($rewrites[1] && (!str_starts_with($rewrites[1], '^/')) && (str_starts_with($rewrites[1], '^'))) {
+                            if ($regexp) {
+                                $rewrites[1] = '^/' . substr($rewrites[1], 1);    // aus ^xyz wird ^/xyz
                             } else {
-                                $content .= '<tr><td>' . $rewrites[1] . '</td><td style="color:#ff0000;"> did not worked </td><td>' . $rewrites[2] . '</td><td>' . $statuscode . "</td></tr>\n";
+                                $rewrites[1] = '/' . substr($rewrites[1], 1);    // aus ^xyz wird /xyz
+                            }
+                        }
+                        if ($regexp) {
+                            $rewrites[1] = '#' . $rewrites[1] . '#';        // TYPO3 will das so
+                        }
+                        if ($rewrites[1] && $rewrites[2] && (strlen($rewrites[1]) > 2)) {
+                            if ($method) {
+                                if ($this->sessionRepository->addRedirect($rewrites[1], $rewrites[2], $regexp, $statuscode, $beuser_id)) {
+                                    $content .= '<tr><td>' . $rewrites[1] . '</td><td style="color:#00ff00;"> to </td><td>' . $rewrites[2] . '</td><td>' . $statuscode . "</td></tr>\n";
+                                    $success++;
+                                } else {
+                                    $content .= '<tr><td>' . $rewrites[1] . '</td><td style="color:#ff0000;"> did not worked </td><td>' . $rewrites[2] . '</td><td>' . $statuscode . "</td></tr>\n";
+                                }
+                            } else {
+                                $content .= '<tr><td>' . $rewrites[1] . '</td><td> to </td><td>' . $rewrites[2] . '</td><td>' . $statuscode . "</td></tr>\n";
+                                $success++;
                             }
                         } else {
-                            $content .= '<tr><td>' . $rewrites[1] . '</td><td> to </td><td>' . $rewrites[2] . '</td><td>' . $statuscode . "</td></tr>\n";
-                            $success++;
+                            $content .= '<tr><td>' . $rewrites[1] . '</td><td style="color:#ff0000;"> ignored </td><td>' . $rewrites[2] . '</td><td>' . $statuscode . "</td></tr>\n";
                         }
+                        $total++;
                     } else {
-                        $content .= '<tr><td>' . $rewrites[1] . '</td><td style="color:#ff0000;"> ignored </td><td>' . $rewrites[2] . '</td><td>' . $statuscode . "</td></tr>\n";
+                        $content .= '</table>Error in file.<br>';
                     }
-                    $total++;
                 }
                 fclose($filecontent);
                 $content .= "</table><br />$success/$total lines ";

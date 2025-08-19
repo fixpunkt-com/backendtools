@@ -238,6 +238,39 @@
 			<trans-unit id="button.delete_redirects">
 				<target>Lösche ausgewählte Weiterleitungen</target>
 			</trans-unit>
+			<trans-unit id="choose_file">
+				<target>Wähle eine Datei von hier (relativer Pfad und Dateiname)</target>
+			</trans-unit>
+			<trans-unit id="option.code">
+				<target>Standard Status-Code</target>
+			</trans-unit>
+			<trans-unit id="option.not_convert_data">
+				<target>konvertiere Daten nicht</target>
+			</trans-unit>
+			<trans-unit id="option.convert_data">
+				<target>konvertiere Daten zu</target>
+			</trans-unit>
+			<trans-unit id="option.no_expressions">
+				<target>Ich benutze keine regular expressions</target>
+			</trans-unit>
+			<trans-unit id="option.with_expressions">
+				<target>ja, Ich benutzte regular expressions in Weiterleitungen</target>
+			</trans-unit>
+			<trans-unit id="option.show_only_file">
+				<target>Zeige nur den Dateiinhalt</target>
+			</trans-unit>
+			<trans-unit id="option.import_file">
+				<target>Importiere Weiterleitungen zu sys_redirects</target>
+			</trans-unit>
+			<trans-unit id="button.import_redirects">
+				<target>Zeige / importiere Weiterleitungen</target>
+			</trans-unit>
+			<trans-unit id="note.redirects1">
+				<target>Achtung: die Datei darf nur redirect-rules aus einer .htaccess enthalten! Z.B.</target>
+			</trans-unit>
+			<trans-unit id="note.redirects2">
+				<target>Kopiere die Regeln von deiner .htaccess und platziere die Zeilen in einer Datei im fileadmin-Ordner (z.B. redirects.txt).</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

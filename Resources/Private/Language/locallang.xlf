@@ -204,6 +204,39 @@
 			<trans-unit id="button.delete_redirects">
 				<source>Delete selected redirects</source>
 			</trans-unit>
+			<trans-unit id="choose_file">
+				<source>Choose a file from here (relative path and file name)</source>
+			</trans-unit>
+			<trans-unit id="option.code">
+				<source>Default status code</source>
+			</trans-unit>
+			<trans-unit id="option.not_convert_data">
+				<source>do not convert data</source>
+			</trans-unit>
+			<trans-unit id="option.convert_data">
+				<source>convert data to</source>
+			</trans-unit>
+			<trans-unit id="option.no_expressions">
+				<source>I don´t use regular expressions</source>
+			</trans-unit>
+			<trans-unit id="option.with_expressions">
+				<source>yes, I use regular expressions in redirects</source>
+			</trans-unit>
+			<trans-unit id="option.show_only_file">
+				<source>show only the content of this file</source>
+			</trans-unit>
+			<trans-unit id="option.import_file">
+				<source>import the redirects to sys_redirects</source>
+			</trans-unit>
+			<trans-unit id="button.import_redirects">
+				<source>Show / import redirects</source>
+			</trans-unit>
+			<trans-unit id="note.redirects1">
+				<source>Note: the file should contain (only) redirect rules from your .htaccess! E.g.</source>
+			</trans-unit>
+			<trans-unit id="note.redirects2">
+				<source>Copy that rules from your .htaccess and place the new file in your fileadmin-folder (e.g. redirects.txt).</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
