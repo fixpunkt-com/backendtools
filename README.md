@@ -1,6 +1,6 @@
 # backendtools
 
-Version 6.1.1
+Version 6.1.2
 
 8 admin tools for extensions, pages, (backend) layouts, slug, redirects, files, images and links:
 extension-list, recent pages and content elements, used (backend) layouts, import redirects, check redirects,
@@ -41,3 +41,7 @@ Version 6.0.7:
 Version 6.1.0:
 - New select option: language.
 - New language added: german.
+
+Version 6.1.2:
+- Adding hash (jump mark) to urls.
+- Bugfix: respect site-variants.

@@ -96,11 +96,18 @@ class SessionRepository extends Repository
         //print_r($res->getSQL());
         $result = $res-> executeQuery()->fetchAllAssociative();
 
+        $listDone = false;
+        $ctypeDone = false;
         foreach ($result as $row) {
             if ($row['list_type']) {
+                if (!$listDone && $ctypeDone) {
+                    $types['3#0'] = '--- list_types ---';
+                }
                 $types['1#' . $row['list_type']] = $row['list_type'];
+                $listDone = true;
             } elseif ($row['CType'] && $row['CType'] != 'list') {
                 $types['2#' . $row['CType']] = $row['CType'];
+                $ctypeDone = true;
             }
         }
         return $types;
@@ -1438,23 +1445,20 @@ class SessionRepository extends Repository
         if (isset($root['is_siteroot'])) {
             try {
                 $site = $this->siteFinder->getSiteByPageId($root['uid']);   // oder $uid;
-                $base = $site->getConfiguration()['base'];
+                $host = $site->getBase()->getHost();
+                $scheme = $site->getBase()->getScheme();
+                $domain = $scheme . '://' . $host;
+                //$base = $site->getConfiguration()['base'];
                 $lang = $site->getConfiguration()['languages'];
                 $lang = $lang[$sys_language_uid]['base'] ?? '';
-                if ((str_starts_with((string)$base, 'http')) && (str_starts_with((string)$lang, 'http'))) {
-                    // wenn die Domain beides mal benutzt wird, entfernen wir sie bei der Sprache
-                    $parse_url = parse_url((string)$lang);
-                    $lang = $parse_url['path'];
+                if (str_starts_with((string)$lang, 'http')) {
+                    // Wenn die andere Sprache eine andere Domain hat, dann wird die Domain übernommen.
+                    $domain = $lang;
+                } else {
+                    $domain .= $lang;
                 }
-                $domain = rtrim((string)$base, '/') . rtrim((string)$lang, '/');
-                if ((!str_starts_with((string)$base, 'http')) && (strlen((string)$base) > 4)) {
-                    if (str_starts_with((string)$base, '//')) {
-                        // muss nicht sein:   $domain = 'http:' . $domain;
-                    } elseif (str_starts_with((string)$base, '/')) {
-                        $domain = 'http:/' . $domain;
-                    } else {
-                        $domain = 'http://' . $domain;
-                    }
+                if (str_ends_with($domain, '/')) {
+                    $domain = substr($domain, 0, -1);
                 }
             } catch (\Exception) {
                 return '';

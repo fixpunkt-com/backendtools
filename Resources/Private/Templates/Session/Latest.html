@@ -144,7 +144,7 @@ uid;tstamp;lang.;colPos;deleted;hidden;header;CType;list_type;uid;tstamp;deleted
 					<td><f:format.date format="d.m.Y">{page.ptstamp}</f:format.date></td>
 					<td><f:if condition="{page.pdeleted} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then><f:else>{f:translate(key: 'no')}</f:else></f:if> /
 						<f:if condition="{page.phidden} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then><f:else>{f:translate(key: 'no')}</f:else></f:if></td>
-					<td><a href="{page.domain}{page.slug}" target="extern">{page.title}</a></td>
+					<td><a href="{page.domain}{page.slug}#c{page.uid}" target="extern">{page.title}</a></td>
 				</tr>
 			</f:for>
 		</tbody>
