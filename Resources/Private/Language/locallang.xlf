@@ -60,6 +60,9 @@
 			<trans-unit id="title.images">
 				<source>Find used images without title- or alt-text</source>
 			</trans-unit>
+			<trans-unit id="title.fileadmin">
+				<source>Show unused files in /fileadmin (default storage)</source>
+			</trans-unit>
 			<trans-unit id="title.layouts">
 				<source>Show where (backend) layouts are used</source>
 			</trans-unit>
@@ -179,6 +182,9 @@
 			</trans-unit>
 			<trans-unit id="image_entries">
 				<source>image(s)/file(s) found, that are used.</source>
+			</trans-unit>
+			<trans-unit id="not_image_entries">
+				<source>image(s)/file(s) found, that are not used in the default storage.</source>
 			</trans-unit>
 			<trans-unit id="image_entries_not_used">
 				<source>missing file(s) is/are not used (in tt_content)</source>

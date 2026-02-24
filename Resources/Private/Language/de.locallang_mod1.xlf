@@ -47,6 +47,10 @@
 				<source>Show where missing files are used</source>
 				<target>Zeige, wo fehlende Bilder benutzt werden</target>
 			</trans-unit>
+			<trans-unit id="module.fileadmin" xml:space="preserve">
+				<source>Show where unused files are in /fileadmin</source>
+				<target>Zeige, wo unbenutzte Dateien in /fileadmin liegen</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

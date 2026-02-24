@@ -75,6 +75,10 @@
 				<source>Find used images without title- or alt-text</source>
 				<target>Finde benutzte Bilder ohne title- oder alt-Text</target>
 			</trans-unit>
+			<trans-unit id="title.fileadmin">
+				<source>Show unused files in /fileadmin and other storages</source>
+				<target>Zeige unbenutzte Dateien in /fileadmin (bzw. im default Storage)</target>
+			</trans-unit>
 			<trans-unit id="title.missing">
 				<target>Finde fehlende Bilder/Dateien und zeige, wo sie benutzt werden</target>
 			</trans-unit>
@@ -213,6 +217,9 @@
 			</trans-unit>
 			<trans-unit id="image_entries">
 				<target>Bilder/Dateien-Einträge gefunden, die benutzt werden.</target>
+			</trans-unit>
+			<trans-unit id="not_image_entries">
+				<target>Bilder/Dateien-Einträge gefunden, die nicht im default-Storage benutzt werden.</target>
 			</trans-unit>
 			<trans-unit id="image_entries_not_used">
 				<target>fehlende Bilder/Dateien werden nicht benutzt (in tt_content)</target>

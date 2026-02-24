@@ -4,6 +4,13 @@
 
 Changelog
 =========
+Version 6.2.0:
+New tool: show unused files in fileadmin-folder.
+
+Version 6.1.2:
+Adding hash (jump mark) to urls.
+Bugfix: respect site-variants.
+
 Version 6.1.0:
 New select option: language.
 New language added: german.

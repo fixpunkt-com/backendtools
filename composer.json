@@ -1,8 +1,9 @@
 {
 	"name" : "fixpunkt/backendtools",
 	"type" : "typo3-cms-extension",
-	"description" : "8 admin tools for extension listing, recent pages, pages with layouts, redirects, unused files, images with no alt- or title-tag and links.",
-	"authors" : [{
+	"description" : "9 admin tools for extension listing, recent pages, pages with layouts, redirects, missing or unused files, images with no alt- or title-tag and links.",
+	"authors" : [
+		{
 			"name" : "Kurt Gusbeth",
 			"role" : "Developer"
 		}
@@ -15,7 +16,6 @@
 		"typo3/cms-dashboard": "^12 || ^13",
         "friendsofphp/php-cs-fixer": "^3.0",
         "ergebnis/composer-normalize": "^2.28",
-        "ssch/typo3-rector": "^2.3",
         "typo3/coding-standards": "^0.5.5"
     },
 	"suggest": {
@@ -24,11 +24,6 @@
 	"autoload" : {
 		"psr-4" : {
 			"Fixpunkt\\Backendtools\\" : "Classes"
-		}
-	},
-	"autoload-dev" : {
-		"psr-4" : {
-			"Fixpunkt\\Backendtools\\Tests\\" : "Tests"
 		}
 	},
 	"homepage" : "https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/",

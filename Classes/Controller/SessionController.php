@@ -793,6 +793,115 @@ class SessionController extends ActionController
     }
 
     /**
+     * action fileadmin: unused files in fileadmin
+     *
+     * @return ResponseInterface
+     */
+    public function fileadminAction(): ResponseInterface
+    {
+        $beuser_id = $GLOBALS['BE_USER']->user['uid'];
+        $result = $this->sessionRepository->findByAction('fileadmin', $beuser_id);
+        if ($result->count() == 0) {
+            $new = true;
+            $default = GeneralUtility::makeInstance(Session::class);
+            $default->setAction('fileadmin');
+            $default->setValue1(0);
+            $default->setValue2(0);
+        } else {
+            $new = false;
+            $default = $result[0];
+        }
+
+        if ($this->request->hasArgument('currentPage')) {
+            $currentPage = (int)($this->request->getArgument('currentPage'));
+        } else {
+            $currentPage = 1;
+        }
+        if ($this->request->hasArgument('my_page')) {
+            $my_page = (int)($this->request->getArgument('my_page'));		// elements per page
+            $default->setPageel($my_page);
+        } else {
+            $my_page = $default->getPageel();
+        }
+        if (!$my_page) {
+            if (isset($this->settings['pagebrowser']['itemsPerPage'])) {
+                $my_page = $this->settings['pagebrowser']['itemsPerPage'];
+            }
+            if (!$my_page) {
+                $my_page = $this->settings['pagebrowser']['itemsPerPage'] = 25;
+            }
+        } else {
+            $this->settings['pagebrowser']['itemsPerPage'] = $my_page;
+        }
+
+        if ($new) {
+            $user = $this->backendUserRepository->findByUid($beuser_id);
+            $default->setBeuser($user);
+            $this->sessionRepository->add($default);
+            $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
+            $persistenceManager->persistAll();
+        } else {
+            $this->sessionRepository->update($default);
+        }
+
+        $count = 0;
+        $finalArray = [];
+        $resourceRepository = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\StorageRepository::class);
+        $defaultStorage = $resourceRepository->getDefaultStorage();
+        if ($defaultStorage instanceof \TYPO3\CMS\Core\Resource\ResourceStorage) {
+            // ... do something with the default storage
+            $storage = substr($defaultStorage->getConfiguration()["basePath"], 0, -1);;
+            $defaultStorageUid = $defaultStorage->getUid();
+        } else {
+            $storage = 'fileadmin/';
+            $defaultStorageUid = 0;
+        }
+        $dbArray1 = $this->sessionRepository->getAllFilereferences($defaultStorageUid);
+        $sys_file_ref = [];
+        foreach ($dbArray1 as $row) {
+            $sys_file_ref[$row['identifier']] = $row;
+        }
+        $dbArray2 = $this->sessionRepository->getAllFiles($defaultStorageUid);
+        $sys_file = [];
+        foreach ($dbArray2 as $row) {
+            $sys_file[$row['identifier']] = $row;
+        }
+        $root = Environment::getPublicPath() . '/' .$storage;
+        $fileArray = $this->read_all_files($root);
+        foreach ($fileArray['files'] as $file) {
+            $currentFile = str_replace($root, '', $file);
+            if (!isset($sys_file_ref[$currentFile])) {
+                $finalArray[$count] = [];
+                $finalArray[$count]['identifier'] = $currentFile;
+                if (isset($sys_file[$currentFile])) {
+                    $finalArray[$count]['uid'] = $sys_file[$currentFile]['uid'];
+                    $finalArray[$count]['missing'] = $sys_file[$currentFile]['missing'];
+                } else {
+                    $finalArray[$count]['uid'] = '';
+                    $finalArray[$count]['missing'] = '';
+                }
+                $count++;
+            }
+        }
+        //$count = count($finalArray);
+
+        $arrayPaginator = new ArrayPaginator($finalArray, $currentPage, $this->settings['pagebrowser']['itemsPerPage']);
+        $pagination = new SimplePagination($arrayPaginator);
+
+        $this->moduleTemplate->assign('count', $count);
+        $this->moduleTemplate->assign('files', $finalArray);
+        $this->moduleTemplate->assign('paginator', $arrayPaginator);
+        $this->moduleTemplate->assign('pagination', $pagination);
+        $this->moduleTemplate->assign('no_pages', range(1, $pagination->getLastPageNumber()));
+        $this->moduleTemplate->assign('my_page', $my_page);
+        $this->moduleTemplate->assign('page', $currentPage);
+        $this->moduleTemplate->assign('settings', $this->settings);
+        $this->moduleTemplate->assign('action', 'fileadmin');
+        $this->addDocHeaderDropDown('fileadmin');
+        return $this->moduleTemplate->renderResponse('Session/Fileadmin');
+    }
+
+    /**
      * action pagesearch: find pages which are linked
      *
      * @return ResponseInterface
@@ -1270,6 +1379,49 @@ class SessionController extends ActionController
         return $this->moduleTemplate->renderResponse('Session/Redirectscheck');
     }
 
+
+
+    /**
+     * Finds path, relative to the given root folder, of all files and directories in the given directory and its sub-directories non recursively.
+     * Will return an array of the form
+     * array(
+     *   'files' => [],
+     *   'dirs'  => [],
+     * )
+     * @author sreekumar
+     * @param string $root
+     */
+    protected function read_all_files($root = '.'): array
+    {
+        $files  = array('files'=>array(), 'dirs'=>array());
+        $directories  = array();
+        $last_letter  = $root[strlen($root)-1];
+        $root  = ($last_letter == '\\' || $last_letter == '/') ? $root : $root.DIRECTORY_SEPARATOR;
+
+        $directories[]  = $root;
+
+        while (sizeof($directories)) {
+            $dir  = array_pop($directories);
+            if ($handle = opendir($dir)) {
+                while (false !== ($file = readdir($handle))) {
+                    if ($file == '.' || $file == '..' || (substr($file, 0, 1) == '.') || (substr($file, 0, 1) == '_')) {
+                        continue;
+                    }
+                    $file  = $dir.$file;
+                    if (is_dir($file)) {
+                        $directory_path = $file.DIRECTORY_SEPARATOR;
+                        array_push($directories, $directory_path);
+                        $files['dirs'][]  = $directory_path;
+                    } elseif (is_file($file)) {
+                        $files['files'][]  = str_replace('\\', '/', $file);
+                    }
+                }
+                closedir($handle);
+            }
+        }
+        return $files;
+    }
+
     /**
      * Formats bytes.
      *
@@ -1314,7 +1466,7 @@ class SessionController extends ActionController
         $languageService = $this->getLanguageService();
         $actionMenu = $this->moduleTemplate->getDocHeaderComponent()->getMenuRegistry()->makeMenu();
         $actionMenu->setIdentifier('backendtoolsSelector');
-        $actions = ['list', 'latest', 'pagesearch', 'layouts', 'images', 'missing', 'redirects', 'redirectscheck'];
+        $actions = ['list', 'latest', 'pagesearch', 'layouts', 'images', 'missing', 'fileadmin', 'redirects', 'redirectscheck'];
         foreach ($actions as $action) {
             $actionMenu->addMenuItem(
                 $actionMenu->makeMenuItem()

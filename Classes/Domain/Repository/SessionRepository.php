@@ -1363,6 +1363,80 @@ class SessionRepository extends Repository
         return $finalArray;
     }
 
+
+    /**
+     * getAllStorages
+     *
+     * @return	array
+     */
+    public function getAllStorages()
+    {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('sys_file_reference')->createQueryBuilder();
+        $res = $queryBuilder ->select(...[
+            'uid',
+            'title',
+            'alternative',
+            'uid_local',
+            'uid_foreign',
+            'tablenames',
+        ]) -> from('sys_file_reference')
+            ->where(
+                $queryBuilder->expr()->neq('tablenames', $queryBuilder->createNamedParameter('tt_content')),
+            )
+            ->orderBy('uid', 'ASC');
+        //print_r($queryBuilder->getSQL());
+        return $res -> executeQuery()->fetchAllAssociative();
+    }
+
+    /**
+     * getAllFilereferences of a storage
+     */
+    public function getAllFilereferences(int $storageUid): array
+    {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('sys_file_reference')->createQueryBuilder();
+        $res = $queryBuilder ->select(...[
+            'sys_file_reference.uid',
+            'sys_file.identifier',
+        ]) -> from('sys_file_reference')
+            -> join(
+                'sys_file_reference',
+                'sys_file',
+                'sys_file',
+                $queryBuilder->expr()->eq('sys_file_reference.uid_local', $queryBuilder->quoteIdentifier('sys_file.uid')),
+            )
+            -> join(
+                'sys_file',
+                'sys_file_storage',
+                'sys_file_storage',
+                $queryBuilder->expr()->eq('sys_file.storage', $queryBuilder->quoteIdentifier('sys_file_storage.uid')),
+            )
+            ->where(
+                $queryBuilder->expr()->eq('sys_file.storage', (int) $storageUid),
+            )
+            ->orderBy('sys_file.uid', 'ASC');
+        // print_r($queryBuilder->getSQL());
+        return $res -> executeQuery()->fetchAllAssociative();
+    }
+
+    /**
+     * getAllFiles of a storage
+     */
+    public function getAllFiles(int $storageUid): array
+    {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('sys_file_reference')->createQueryBuilder();
+        $res = $queryBuilder ->select(...[
+            'sys_file.uid',
+            'sys_file.identifier',
+            'sys_file.missing'
+        ]) -> from('sys_file')
+            ->where(
+                $queryBuilder->expr()->eq('sys_file.storage', (int) $storageUid),
+            )
+            ->orderBy('sys_file.uid', 'ASC');
+        // print_r($queryBuilder->getSQL());
+        return $res -> executeQuery()->fetchAllAssociative();
+    }
+
     /**
      * setAltOrTitle
      *

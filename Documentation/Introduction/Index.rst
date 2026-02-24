@@ -12,7 +12,7 @@ What does it do?
 ----------------
 
 This extension provides some useful tools in the “Admin tools” section of the backend of TYPO3.
-It contains up to 11 tools for extensions, pages, slugs, redirects, files, images and links.
+It contains up to 10 tools for extensions, pages, redirects, files, images and links.
 
 Tool 1: shows you all pages where you use extensions. You can see where you use which extension.
 You can search for non-extensions too, e.g. if you set Ctype='mailform'.
@@ -35,12 +35,7 @@ Tool 9: helps you to delete unused files. Go to “Admin tools” → DB check�
 This tool helps you to delete these files in the uploads-folder.
 Note: this tool was removed in version 6.0.0, because the uploads-folder is no longer in use.
 
-Tool 10: shows differences between RealURL-pagepath (in tx_realurl_pathdata) and Slug (in pages).
-Note: the old RealURL-tables must be present!
-Note: this tool was removed in version 4.0.0.
-
-Tool 11: unzip a zip-file in the fileadmin-folder.
-Note: this tool was removed in version 3.0.0.
+Tool 10: show unused files in the default-storage (fileadmin).
 
 Since version 4.2.0 there are some dashboard widgets available too.
 

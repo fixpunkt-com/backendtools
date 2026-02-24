@@ -1,10 +1,11 @@
 # backendtools
 
-Version 6.1.2
+Version 6.2.0
 
-8 admin tools for extensions, pages, (backend) layouts, slug, redirects, files, images and links:
-extension-list, recent pages and content elements, used (backend) layouts, import redirects, check redirects,
-show where missing files are used, images with no title/alt-text and linklist.
+9 admin tools for extensions, pages, (backend) layouts, slug, redirects, files, images and links:
+extension-list, recent pages and content elements, used (backend) layouts,
+import redirects, check redirects, show where missing files are used and
+where unused files in /fileadmin are, show images with no title/alt-text and linklist.
 
 You find the documentation for this extension at typo3.org:
 https://docs.typo3.org/p/fixpunkt/backendtools/master/en-us/
@@ -45,3 +46,6 @@ Version 6.1.0:
 Version 6.1.2:
 - Adding hash (jump mark) to urls.
 - Bugfix: respect site-variants.
+
+Version 6.2.0:
+- New tool: show unused files in fileadmin-folder.
