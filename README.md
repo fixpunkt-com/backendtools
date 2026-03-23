@@ -1,6 +1,6 @@
 # backendtools
 
-Version 6.2.0
+Version 6.2.1
 
 9 admin tools for extensions, pages, (backend) layouts, slug, redirects, files, images and links:
 extension-list, recent pages and content elements, used (backend) layouts,
@@ -47,5 +47,6 @@ Version 6.1.2:
 - Adding hash (jump mark) to urls.
 - Bugfix: respect site-variants.
 
-Version 6.2.0:
+Version 6.2.0/1:
 - New tool: show unused files in fileadmin-folder.
+- Search for list-type only with CType 'list'.

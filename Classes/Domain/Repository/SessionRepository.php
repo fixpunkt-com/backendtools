@@ -221,6 +221,9 @@ class SessionRepository extends Repository
                 $res -> andWhere(
                     $queryBuilder->expr()->like('tt_content.list_type', $queryBuilder->createNamedParameter($queryBuilder->escapeLikeWildcards($my_value) . '%')),
                 );
+                $res -> andWhere(
+                    $queryBuilder->expr()->like('tt_content.CType', 'list'),
+                );
             }
         } else {
             $res -> andWhere(...[

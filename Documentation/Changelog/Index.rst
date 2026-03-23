@@ -4,8 +4,9 @@
 
 Changelog
 =========
-Version 6.2.0:
+Version 6.2.0/1:
 New tool: show unused files in fileadmin-folder.
+Search for list-type only with CType 'list'.
 
 Version 6.1.2:
 Adding hash (jump mark) to urls.
