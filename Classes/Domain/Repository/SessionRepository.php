@@ -99,7 +99,7 @@ class SessionRepository extends Repository
         $listDone = false;
         $ctypeDone = false;
         foreach ($result as $row) {
-            if ($row['list_type']) {
+            if ($row['list_type'] && $row['CType'] == 'list') {
                 if (!$listDone && $ctypeDone) {
                     $types['3#0'] = '--- list_types ---';
                 }
@@ -222,7 +222,7 @@ class SessionRepository extends Repository
                     $queryBuilder->expr()->like('tt_content.list_type', $queryBuilder->createNamedParameter($queryBuilder->escapeLikeWildcards($my_value) . '%')),
                 );
                 $res -> andWhere(
-                    $queryBuilder->expr()->like('tt_content.CType', 'list'),
+                    $queryBuilder->expr()->eq('tt_content.CType', $queryBuilder->createNamedParameter('list')),
                 );
             }
         } else {
