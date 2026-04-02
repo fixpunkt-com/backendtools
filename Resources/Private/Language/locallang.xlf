@@ -243,6 +243,21 @@
 			<trans-unit id="note.redirects2">
 				<source>Copy that rules from your .htaccess and place the new file in your fileadmin-folder (e.g. redirects.txt).</source>
 			</trans-unit>
+			<trans-unit id="button.delete_files">
+				<source>Delete selected entry in (sys_file, sys_file_metadata and in) the default-storage</source>
+			</trans-unit>
+			<trans-unit id="message.filedel1a">
+				<source>File-entries with uid "</source>
+			</trans-unit>
+			<trans-unit id="message.filedel2a">
+				<source>" deleted in sys_file (and sys_file_metadata).</source>
+			</trans-unit>
+			<trans-unit id="message.filedel1b">
+				<source>File "</source>
+			</trans-unit>
+			<trans-unit id="message.filedel2b">
+				<source>" in default-storage deleted.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

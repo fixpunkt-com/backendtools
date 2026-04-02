@@ -1179,20 +1179,23 @@ class SessionRepository extends Repository
     }
 
     /**
-     * Missing Bilder löschen
+     * (Missing) Bilder löschen
      *
-     * @param   int   Bild-UID
-     * @return    bool
+     * @param int     Bild-UID
+     * @param boolean With reference
+     * @return bool
      */
-    public function delMissingImage(int $uid)
+    public function delMissingImage(int $uid, bool $withReference = true): bool
     {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_file_reference');
-        $queryBuilder
-            ->delete('sys_file_reference')
-            ->where(
-                $queryBuilder->expr()->eq('uid_local', $uid),
-            )
-            ->executeStatement();
+        if ($withReference) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_file_reference');
+            $queryBuilder
+                ->delete('sys_file_reference')
+                ->where(
+                    $queryBuilder->expr()->eq('uid_local', $uid),
+                )
+                ->executeStatement();
+        }
         $queryBuilder2 = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_file_metadata');
         $queryBuilder2
             ->delete('sys_file_metadata')
@@ -1217,7 +1220,7 @@ class SessionRepository extends Repository
      *
      * @return  array     Bilder
      */
-    public function getImagesWithout($img_without, $img_other)
+    public function getImagesWithout($img_without, $img_other): array
     {
         //$pageRep = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
         $this->siteFinder = GeneralUtility::makeInstance(SiteFinder::class);

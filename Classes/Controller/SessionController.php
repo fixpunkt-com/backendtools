@@ -52,6 +52,13 @@ class SessionController extends ActionController
     protected ModuleTemplate $moduleTemplate;
 
     /**
+     * Path to the locallang file
+     *
+     * @var string
+     */
+    public const LLPATH = 'LLL:EXT:backendtools/Resources/Private/Language/locallang.xlf:';
+
+    /**
      * sessionRepository
      *
      * @var SessionRepository
@@ -732,7 +739,7 @@ class SessionController extends ActionController
             foreach ($notUsedImages as $image) {
                 $uid = (int)$image['uid'];
                 if ($uid) {
-                    $this->sessionRepository->delMissingImage($uid);
+                    $this->sessionRepository->delMissingImage($uid, true);
                 }
             }
             $this->addFlashMessage('All not used (in tt_content) image-entries deleted.');
@@ -741,7 +748,7 @@ class SessionController extends ActionController
             // ein Bild-Eintrag löschen
             $uid = (int)$this->request->getArgument('delimg');
             if ($uid) {
-                $this->sessionRepository->delMissingImage($uid);
+                $this->sessionRepository->delMissingImage($uid, true);
                 $this->addFlashMessage('Image-entries with uid "' . $uid . '" deleted.');
             }
         }
@@ -844,6 +851,10 @@ class SessionController extends ActionController
             $this->sessionRepository->update($default);
         }
 
+        $delfile = '';
+        if ($this->request->hasArgument('delfile')) {
+            $delfile = $this->request->getArgument('delfile');
+        }
         $count = 0;
         $finalArray = [];
         $resourceRepository = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\StorageRepository::class);
@@ -870,25 +881,45 @@ class SessionController extends ActionController
         $fileArray = $this->read_all_files($root);
         foreach ($fileArray['files'] as $file) {
             $currentFile = str_replace($root, '', $file);
-            if (!isset($sys_file_ref[$currentFile])) {
-                $finalArray[$count] = [];
-                $finalArray[$count]['identifier'] = $currentFile;
+            if (!isset($sys_file_ref[$currentFile]) && ($currentFile != '/user_upload/index.html')) {
                 if (isset($sys_file[$currentFile])) {
-                    $finalArray[$count]['uid'] = $sys_file[$currentFile]['uid'];
-                    $finalArray[$count]['missing'] = $sys_file[$currentFile]['missing'];
+                    if ($delfile && is_numeric($delfile) && $delfile == $sys_file[$currentFile]['uid']) {
+                        $this->sessionRepository->delMissingImage($delfile, false);
+                        $this->addFlashMessage(
+                            $this->getLanguageService()->sL(self::LLPATH . 'message.filedel1a') .
+                            $delfile .
+                            $this->getLanguageService()->sL(self::LLPATH . 'message.filedel2a'));
+                        unlink($file);
+                        $this->addFlashMessage(
+                            $this->getLanguageService()->sL(self::LLPATH . 'message.filedel1b') .
+                            $currentFile .
+                            $this->getLanguageService()->sL(self::LLPATH . 'message.filedel2b'));
+                    } else {
+                        $finalArray[$count] = [];
+                        $finalArray[$count]['identifier'] = $currentFile;
+                        $finalArray[$count]['uid'] = $sys_file[$currentFile]['uid'];
+                    }
                 } else {
-                    $finalArray[$count]['uid'] = '';
-                    $finalArray[$count]['missing'] = '';
+                    if ($delfile && !is_numeric($delfile) && $delfile == $currentFile) {
+                        unlink($file);
+                        $this->addFlashMessage(
+                            $this->getLanguageService()->sL(self::LLPATH . 'message.filedel1b') .
+                            $currentFile .
+                            $this->getLanguageService()->sL(self::LLPATH . 'message.filedel2b'));
+                    } else {
+                        $finalArray[$count] = [];
+                        $finalArray[$count]['identifier'] = $currentFile;
+                        $finalArray[$count]['uid'] = '';
+                    }
                 }
                 $count++;
             }
         }
-        //$count = count($finalArray);
 
         $arrayPaginator = new ArrayPaginator($finalArray, $currentPage, $this->settings['pagebrowser']['itemsPerPage']);
         $pagination = new SimplePagination($arrayPaginator);
 
-        $this->moduleTemplate->assign('count', $count);
+        $this->moduleTemplate->assign('count', count($finalArray));
         $this->moduleTemplate->assign('files', $finalArray);
         $this->moduleTemplate->assign('paginator', $arrayPaginator);
         $this->moduleTemplate->assign('pagination', $pagination);

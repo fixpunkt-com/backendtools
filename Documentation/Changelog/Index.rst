@@ -4,6 +4,9 @@
 
 Changelog
 =========
+Version 6.2.3:
+Possibility added, to delete a file from the "unused files list".
+
 Version 6.2.0/1:
 New tool: show unused files in fileadmin-folder.
 Search for list-type only with CType 'list'.

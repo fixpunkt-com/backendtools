@@ -26,17 +26,17 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th style="color:#000;text-align:center;background-color:#cfc;">&nbsp;</th>
                         <th style="color:#000;text-align:center;background-color:#cfc;">file</th>
                         <th style="color:#000;text-align:center;background-color:#cfc;">sys_file.uid</th>
-                        <th style="color:#000;text-align:center;background-color:#cfc;">sys_file.missing</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <f:for as="file" each="{paginator.paginatedItems}" iteration="iterator">
+                    <f:for each="{paginator.paginatedItems}" iteration="iterator" as="file">
                         <tr>
+                            <td><f:form.radio name="delfile" value="{f:if(condition: '{file.uid}', then: '{file.uid}', else: '{file.identifier}')}"/></td>
                             <td>{file.identifier}</td>
                             <td>{file.uid}</td>
-                            <td>{file.missing}</td>
                         </tr>
                     </f:for>
                     </tbody>
@@ -44,6 +44,8 @@
 
                 <p>{files -> f:count()} <f:translate key="not_image_entries"/></p>
 
+                <f:form.submit class="btn btn-primary"
+                               name="delthatfile1" value="{f:translate(key: 'button.delete_files')}"/>
                 <br><br>
             </f:form>
 
