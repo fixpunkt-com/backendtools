@@ -1,6 +1,6 @@
 # backendtools
 
-Version 6.2.3
+Version 6.2.4
 
 9 admin tools for extensions, pages, (backend) layouts, slug, redirects, files, images and links:
 extension-list, recent pages and content elements, used (backend) layouts,
@@ -51,5 +51,5 @@ Version 6.2.0/2:
 - New tool: show unused files in fileadmin-folder.
 - Search for list-type only with CType 'list'.
 
-Version 6.2.3:
+Version 6.2.3/4:
 - Possibility added, to delete a file from the "unused files list".

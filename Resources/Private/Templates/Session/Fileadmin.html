@@ -8,9 +8,28 @@
     <f:asset.css href="EXT:backendtools/Resources/Public/Css/Backend.css" identifier="backendtools"/>
     <h1><f:translate key="title.fileadmin" /></h1>
     <f:flashMessages/>
+    <p>
+        <f:translate key="note.fileadmin1" /><br><f:translate key="note.fileadmin2" />
+    </p>
     <f:form action="fileadmin" class="form-inline">
-        <div style="margin: 10px 0;"><f:translate key="tx_backendtools_domain_model_session.pageel"/>:
-            <f:form.textfield name="my_page" size="5" value="{my_page}"/> &nbsp;
+        <div class="row">
+            <div class="col-md-4">
+                <div style="margin: 10px 0;"><f:translate key="tx_backendtools_domain_model_session.pageel"/>:
+                    <f:form.textfield name="my_page" size="5" value="{my_page}"/> &nbsp;
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div style="margin: 10px 0;"><f:translate key="option.ignore_underscore"/>: &nbsp;
+                    <label class="checkbox-inline">
+                        <f:form.radio checked="{ignore_underscore} == 1" name="ignore_underscore" value="1"/>
+                        {f:translate(key: 'yes')} {f:translate(key: 'or')}
+                    </label>
+                    <label class="checkbox-inline">
+                        <f:form.radio checked="{ignore_underscore} == 0" name="ignore_underscore" value="0"/>
+                        {f:translate(key: 'no')}.
+                    </label>
+                </div>
+            </div>
         </div>
         <f:form.submit class="btn btn-default" name="search" value="{f:translate(key: 'search')}" />
         <div>&nbsp;</div>
@@ -27,6 +46,7 @@
                     <thead>
                     <tr>
                         <th style="color:#000;text-align:center;background-color:#cfc;">&nbsp;</th>
+                        <th style="color:#000;text-align:center;background-color:#cfc;">No.</th>
                         <th style="color:#000;text-align:center;background-color:#cfc;">file</th>
                         <th style="color:#000;text-align:center;background-color:#cfc;">sys_file.uid</th>
                     </tr>
@@ -35,7 +55,12 @@
                     <f:for each="{paginator.paginatedItems}" iteration="iterator" as="file">
                         <tr>
                             <td><f:form.radio name="delfile" value="{f:if(condition: '{file.uid}', then: '{file.uid}', else: '{file.identifier}')}"/></td>
-                            <td>{file.identifier}</td>
+                            <td>{iterator.cycle + pageStart}</td>
+                            <td><div class="tooltipbase">
+                                {file.identifier}<span class="tooltiptext">
+                                <f:if condition="{file.uid}"><f:then><f:image src="{file.uid}" maxWidth="200" maxHeight="150"/></f:then>
+                                <f:else><img src="/{storage}{file.identifier}" alt=""/></f:else></f:if>
+                            </span></div></td>
                             <td>{file.uid}</td>
                         </tr>
                     </f:for>

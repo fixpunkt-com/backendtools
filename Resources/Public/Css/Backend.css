@@ -34,7 +34,10 @@ input,select,table.table {
     position: absolute;
     z-index: 1;
 }
-
+.tooltipbase .tooltiptext img {
+    max-height: 150px;
+    width: auto;
+}
 .tooltipbase:hover .tooltiptext {
     visibility: visible;
 }

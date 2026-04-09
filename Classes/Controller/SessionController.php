@@ -841,6 +841,13 @@ class SessionController extends ActionController
             $this->settings['pagebrowser']['itemsPerPage'] = $my_page;
         }
 
+        if ($this->request->hasArgument('ignore_underscore')) {
+            $ignore_underscore = (int)($this->request->getArgument('ignore_underscore'));
+            $default->setValue2($ignore_underscore);
+        } else {
+            $ignore_underscore = $default->getValue2();
+        }
+
         if ($new) {
             $user = $this->backendUserRepository->findByUid($beuser_id);
             $default->setBeuser($user);
@@ -860,11 +867,10 @@ class SessionController extends ActionController
         $resourceRepository = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\StorageRepository::class);
         $defaultStorage = $resourceRepository->getDefaultStorage();
         if ($defaultStorage instanceof \TYPO3\CMS\Core\Resource\ResourceStorage) {
-            // ... do something with the default storage
             $storage = substr($defaultStorage->getConfiguration()["basePath"], 0, -1);;
             $defaultStorageUid = $defaultStorage->getUid();
         } else {
-            $storage = 'fileadmin/';
+            $storage = 'fileadmin';
             $defaultStorageUid = 0;
         }
         $dbArray1 = $this->sessionRepository->getAllFilereferences($defaultStorageUid);
@@ -878,10 +884,10 @@ class SessionController extends ActionController
             $sys_file[$row['identifier']] = $row;
         }
         $root = Environment::getPublicPath() . '/' .$storage;
-        $fileArray = $this->read_all_files($root);
+        $fileArray = $this->read_all_files($root, $ignore_underscore);
         foreach ($fileArray['files'] as $file) {
             $currentFile = str_replace($root, '', $file);
-            if (!isset($sys_file_ref[$currentFile]) && ($currentFile != '/user_upload/index.html')) {
+            if (!isset($sys_file_ref[$currentFile])) {
                 if (isset($sys_file[$currentFile])) {
                     if ($delfile && is_numeric($delfile) && $delfile == $sys_file[$currentFile]['uid']) {
                         $this->sessionRepository->delMissingImage($delfile, false);
@@ -926,6 +932,9 @@ class SessionController extends ActionController
         $this->moduleTemplate->assign('no_pages', range(1, $pagination->getLastPageNumber()));
         $this->moduleTemplate->assign('my_page', $my_page);
         $this->moduleTemplate->assign('page', $currentPage);
+        $this->moduleTemplate->assign('pageStart', $my_page * ($currentPage-1));
+        $this->moduleTemplate->assign('ignore_underscore', $ignore_underscore);
+        $this->moduleTemplate->assign('storage', $storage);
         $this->moduleTemplate->assign('settings', $this->settings);
         $this->moduleTemplate->assign('action', 'fileadmin');
         $this->addDocHeaderDropDown('fileadmin');
@@ -1419,26 +1428,32 @@ class SessionController extends ActionController
      *   'files' => [],
      *   'dirs'  => [],
      * )
-     * @author sreekumar
      * @param string $root
+     * @param int $ignore_underscore
+     * @author sreekumar
      */
-    protected function read_all_files($root = '.'): array
+    protected function read_all_files(string $root = '.', int $ignore_underscore = 0): array
     {
         $files  = array('files'=>array(), 'dirs'=>array());
         $directories  = array();
         $last_letter  = $root[strlen($root)-1];
         $root  = ($last_letter == '\\' || $last_letter == '/') ? $root : $root.DIRECTORY_SEPARATOR;
-
         $directories[]  = $root;
 
         while (sizeof($directories)) {
             $dir  = array_pop($directories);
             if ($handle = opendir($dir)) {
                 while (false !== ($file = readdir($handle))) {
-                    if ($file == '.' || $file == '..' || (substr($file, 0, 1) == '.') || (substr($file, 0, 1) == '_')) {
+                    if ($file == '.' || $file == '..' || (substr($file, 0, 1) == '.') || (substr($file, 0, 11) == '_processed_')) {
                         continue;
                     }
-                    $file  = $dir.$file;
+                    if (($ignore_underscore == 1) && (substr($file, 0, 1) == '_')) {
+                        continue;
+                    }
+                    if (substr($file, -10) == 'index.html') {
+                        continue;
+                    }
+                    $file = $dir.$file;
                     if (is_dir($file)) {
                         $directory_path = $file.DIRECTORY_SEPARATOR;
                         array_push($directories, $directory_path);

@@ -231,10 +231,10 @@
 				<target>Ersetzungen durchgeführt</target>
 			</trans-unit>
 			<trans-unit id="button.delete1">
-				<target>Lösche ausgewählte Einträge in sys_file, sys_file_metadata und sys_file_reference</target>
+				<target>Lösche ausgewählte Einträge in sys_file, sys_file_metadata (und sys_file_reference)</target>
 			</trans-unit>
 			<trans-unit id="button.delete2">
-				<target>Lösche alle nicht benutzen (in tt_content) Bilder-Einträge in sys_file, sys_file_metadata und sys_file_reference</target>
+				<target>Lösche alle nicht benutzen (in tt_content) Bilder-Einträge in sys_file, sys_file_metadata (und sys_file_reference)</target>
 			</trans-unit>
 			<trans-unit id="button.replace1">
 				<target>Ersetze leeres alt-tag (mit title-tag oder Bildname) in sys_file_reference</target>
@@ -279,7 +279,7 @@
 				<target>Kopiere die Regeln von deiner .htaccess und platziere die Zeilen in einer Datei im fileadmin-Ordner (z.B. redirects.txt).</target>
 			</trans-unit>
 			<trans-unit id="button.delete_files">
-				<target>Lösche ausgewählten Eintrag in (sys_file, sys_file_metadata und im) Standard-Dateispeicher</target>
+				<target>Lösche ausgewählten Eintrag (in sys_file, sys_file_metadata und) im Standard-Dateispeicher</target>
 			</trans-unit>
 			<trans-unit id="message.filedel1a">
 				<target>Datei-Eintrag mit der uid "</target>
@@ -292,6 +292,15 @@
 			</trans-unit>
 			<trans-unit id="message.filedel2b">
 				<target>" im Standard-Dateispeicher gelöscht.</target>
+			</trans-unit>
+			<trans-unit id="option.ignore_underscore">
+				<target>Ignoriere Ordner, die mit einem Unterstrich anfangen (_processed_ wird dennoch ignoriert)</target>
+			</trans-unit>
+			<trans-unit id="note.fileadmin1">
+				<target>Achtung: es werden Dateien ignoriert, die index.html heißen. Und es könnte sein, dass manche der Dateien verwendet werden, obwohl sie nicht in der Datenbank gelistet sind!</target>
+			</trans-unit>
+			<trans-unit id="note.fileadmin2">
+				<target>Tipp: vor Benutzung dieses Skripts sollte man den Planer "Dateiabstraktionsschicht: Speicherindex aktualisieren (scheduler)" ausführen!</target>
 			</trans-unit>
 		</body>
 	</file>

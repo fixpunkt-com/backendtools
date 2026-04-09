@@ -4,7 +4,7 @@
 
 Changelog
 =========
-Version 6.2.3:
+Version 6.2.3/4:
 Possibility added, to delete a file from the "unused files list".
 
 Version 6.2.0/1:

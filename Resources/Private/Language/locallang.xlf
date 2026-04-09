@@ -196,10 +196,10 @@
 				<source>replacement(s) done</source>
 			</trans-unit>
 			<trans-unit id="button.delete1">
-				<source>Delete selected entry in sys_file, sys_file_metadata and sys_file_reference</source>
+				<source>Delete selected entry in sys_file, sys_file_metadata (and sys_file_reference)</source>
 			</trans-unit>
 			<trans-unit id="button.delete2">
-				<source>Delete all not used (in tt_content) image-entries in sys_file, sys_file_metadata and sys_file_reference</source>
+				<source>Delete all not used (in tt_content) image-entries in sys_file, sys_file_metadata (and sys_file_reference)</source>
 			</trans-unit>
 			<trans-unit id="button.replace1">
 				<source>Replace empty alt-tag (with the title-tag or image name) in sys_file_reference</source>
@@ -257,6 +257,15 @@
 			</trans-unit>
 			<trans-unit id="message.filedel2b">
 				<source>" in default-storage deleted.</source>
+			</trans-unit>
+			<trans-unit id="option.ignore_underscore">
+				<source>Ignore folders that starts with the underscore (_processed_ will be ignored nevertheless)</source>
+			</trans-unit>
+			<trans-unit id="note.fileadmin1">
+				<source>Note: index.html files are ignored. And think about the possibility, that not all used files are listed in the database!</source>
+			</trans-unit>
+			<trans-unit id="note.fileadmin2">
+				<source>Hint: use the task "File Abstraction Layer: Update storage index (scheduler)" first, before using this script!</source>
 			</trans-unit>
 		</body>
 	</file>
