@@ -814,6 +814,7 @@ class SessionController extends ActionController
             $default->setAction('fileadmin');
             $default->setValue1(0);
             $default->setValue2(0);
+            $default->setValue3(0);
         } else {
             $new = false;
             $default = $result[0];
@@ -840,12 +841,17 @@ class SessionController extends ActionController
         } else {
             $this->settings['pagebrowser']['itemsPerPage'] = $my_page;
         }
-
         if ($this->request->hasArgument('ignore_underscore')) {
             $ignore_underscore = (int)($this->request->getArgument('ignore_underscore'));
             $default->setValue2($ignore_underscore);
         } else {
             $ignore_underscore = $default->getValue2();
+        }
+        if ($this->request->hasArgument('ignore_nouid')) {
+            $ignore_nouid = (int)($this->request->getArgument('ignore_nouid'));
+            $default->setValue3($ignore_underscore);
+        } else {
+            $ignore_nouid = $default->getValue3();
         }
 
         if ($new) {
@@ -905,7 +911,7 @@ class SessionController extends ActionController
                         $finalArray[$count]['identifier'] = $currentFile;
                         $finalArray[$count]['uid'] = $sys_file[$currentFile]['uid'];
                     }
-                } else {
+                } elseif (!$ignore_nouid) {
                     if ($delfile && !is_numeric($delfile) && $delfile == $currentFile) {
                         unlink($file);
                         $this->addFlashMessage(
@@ -934,6 +940,7 @@ class SessionController extends ActionController
         $this->moduleTemplate->assign('page', $currentPage);
         $this->moduleTemplate->assign('pageStart', $my_page * ($currentPage-1));
         $this->moduleTemplate->assign('ignore_underscore', $ignore_underscore);
+        $this->moduleTemplate->assign('ignore_nouid', $ignore_nouid);
         $this->moduleTemplate->assign('storage', $storage);
         $this->moduleTemplate->assign('settings', $this->settings);
         $this->moduleTemplate->assign('action', 'fileadmin');

@@ -31,6 +31,21 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-4"> </div>
+            <div class="col-md-8">
+                <div style="margin: 10px 0;"><f:translate key="option.ignore_nouid"/>: &nbsp;
+                    <label class="checkbox-inline">
+                        <f:form.radio checked="{ignore_nouid} == 1" name="ignore_nouid" value="1"/>
+                        {f:translate(key: 'yes')} {f:translate(key: 'or')}
+                    </label>
+                    <label class="checkbox-inline">
+                        <f:form.radio checked="{ignore_nouid} == 0" name="ignore_nouid" value="0"/>
+                        {f:translate(key: 'no')}.
+                    </label>
+                </div>
+            </div>
+        </div>
         <f:form.submit class="btn btn-default" name="search" value="{f:translate(key: 'search')}" />
         <div>&nbsp;</div>
     </f:form>

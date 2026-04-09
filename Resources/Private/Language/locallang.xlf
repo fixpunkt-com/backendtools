@@ -261,6 +261,9 @@
 			<trans-unit id="option.ignore_underscore">
 				<source>Ignore folders that starts with the underscore (_processed_ will be ignored nevertheless)</source>
 			</trans-unit>
+			<trans-unit id="option.ignore_nouid">
+				<source>Ignore files without sys_file uid</source>
+			</trans-unit>
 			<trans-unit id="note.fileadmin1">
 				<source>Note: index.html files are ignored. And think about the possibility, that not all used files are listed in the database!</source>
 			</trans-unit>
