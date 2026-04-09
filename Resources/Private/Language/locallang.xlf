@@ -246,6 +246,9 @@
 			<trans-unit id="button.delete_files">
 				<source>Delete selected entry in (sys_file, sys_file_metadata and in) the default-storage</source>
 			</trans-unit>
+			<trans-unit id="button.delete_all_files">
+				<source>Delete all unused files in this storage</source>
+			</trans-unit>
 			<trans-unit id="message.filedel1a">
 				<source>File-entries with uid "</source>
 			</trans-unit>
@@ -265,10 +268,13 @@
 				<source>Ignore files without sys_file uid</source>
 			</trans-unit>
 			<trans-unit id="note.fileadmin1">
-				<source>Note: index.html files are ignored. And think about the possibility, that not all used files are listed in the database!</source>
+				<source>Note: hidden files and index.html files are ignored. And think about the possibility, that not all used files are listed in sys_file_references!</source>
 			</trans-unit>
 			<trans-unit id="note.fileadmin2">
 				<source>Hint: use the task "File Abstraction Layer: Update storage index (scheduler)" first, before using this script!</source>
+			</trans-unit>
+			<trans-unit id="message.addFilesDeleted">
+				<source>All unused files of this storage deleted.</source>
 			</trans-unit>
 		</body>
 	</file>

@@ -57,12 +57,14 @@
 
             <f:form action="fileadmin" class="form-inline">
                 <f:form.hidden name="currentPage" value="{page}" />
+                <f:form.hidden name="ignore_underscore" value="{ignore_underscore}" />
+                <f:form.hidden name="ignore_nouid" value="{ignore_nouid}" />
                 <table class="table">
                     <thead>
                     <tr>
                         <th style="color:#000;text-align:center;background-color:#cfc;">&nbsp;</th>
                         <th style="color:#000;text-align:center;background-color:#cfc;">No.</th>
-                        <th style="color:#000;text-align:center;background-color:#cfc;">file</th>
+                        <th style="color:#000;text-align:center;background-color:#cfc;">file.identifier</th>
                         <th style="color:#000;text-align:center;background-color:#cfc;">sys_file.uid</th>
                     </tr>
                     </thead>
@@ -86,6 +88,9 @@
 
                 <f:form.submit class="btn btn-primary"
                                name="delthatfile1" value="{f:translate(key: 'button.delete_files')}"/>
+                &nbsp;
+                <f:form.submit class="btn btn-secondary"
+                               name="delthatfile2" value="{f:translate(key: 'button.delete_all_files')}"/>
                 <br><br>
             </f:form>
 

@@ -281,6 +281,9 @@
 			<trans-unit id="button.delete_files">
 				<target>Lösche ausgewählten Eintrag (in sys_file, sys_file_metadata und) im Standard-Dateispeicher</target>
 			</trans-unit>
+			<trans-unit id="button.delete_all_files">
+				<target>Lösche alle unbenutzten Dateien in diesem Dateispeicher</target>
+			</trans-unit>
 			<trans-unit id="message.filedel1a">
 				<target>Datei-Eintrag mit der uid "</target>
 			</trans-unit>
@@ -300,10 +303,13 @@
 				<target>Ignoriere Dateien ohne sys_file uid</target>
 			</trans-unit>
 			<trans-unit id="note.fileadmin1">
-				<target>Achtung: es werden Dateien ignoriert, die index.html heißen. Und es könnte sein, dass manche der Dateien verwendet werden, obwohl sie nicht in der Datenbank gelistet sind!</target>
+				<target>Achtung: es werden Dateien ignoriert, die versteckt sind oder index.html heißen. Und es könnte sein, dass manche der Dateien verwendet werden, obwohl sie nicht in sys_file_reference gelistet sind!</target>
 			</trans-unit>
 			<trans-unit id="note.fileadmin2">
 				<target>Tipp: vor Benutzung dieses Skripts sollte man den Planer "Dateiabstraktionsschicht: Speicherindex aktualisieren (scheduler)" ausführen!</target>
+			</trans-unit>
+			<trans-unit id="message.addFilesDeleted">
+				<target>Alle unbenutzten Dateien dieses Dateispeichers gelöscht!</target>
 			</trans-unit>
 		</body>
 	</file>

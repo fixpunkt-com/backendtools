@@ -45,6 +45,8 @@
 
             <f:form action="missing" class="form-inline">
                 <f:form.hidden name="currentPage" value="{page}" />
+                <f:form.hidden name="img_other" value="{img_other}" />
+                <f:form.hidden name="my_recursive" value="{my_recursive}" />
                 <table class="table">
                     <thead>
                     <tr>
@@ -107,6 +109,7 @@
 
     <f:if condition="{count} > 0">
         <f:form action="missing" class="form-inline">
+            <f:form.hidden name="img_other" value="{img_other}" />
             <h4>{count} <f:translate key="image_entries_not_used"/>:</h4>
 
             <table class="table">
@@ -148,11 +151,9 @@
                 </tbody>
             </table>
 
-            <f:form.submit class="btn btn-primary"
-                           name="delthatimage2" value="{f:translate(key: 'button.delete1')}"/>
-            <f:form.submit
-                class="btn btn-secondary"
-                name="delallimages" value="{f:translate(key: 'button.delete2')}"/>
+            <f:form.submit class="btn btn-primary" name="delthatimage2" value="{f:translate(key: 'button.delete1')}"/>
+            &nbsp;
+            <f:form.submit class="btn btn-secondary" name="delallimages" value="{f:translate(key: 'button.delete2')}"/>
         </f:form>
     </f:if>
 </f:section>

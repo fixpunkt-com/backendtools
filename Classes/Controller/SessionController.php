@@ -583,6 +583,10 @@ class SessionController extends ActionController
 
         if ($img_without) {
             $finalArray = $this->sessionRepository->getImagesWithout($img_without, $img_other);
+            // von Anfang an unerwünschtes rausfiltern
+            if (count($finalArray) > 0 && $my_recursive > 0) {
+                $finalArray = $this->sessionRepository->filterPagesRecursive($finalArray, $my_recursive);
+            }
         } else {
             $finalArray = [];
         }
@@ -623,6 +627,9 @@ class SessionController extends ActionController
                 }
             }
             $finalArray = $this->sessionRepository->getImagesWithout($img_without, $img_other);
+            if (count($finalArray) > 0 && $my_recursive > 0) {
+                $finalArray = $this->sessionRepository->filterPagesRecursive($finalArray, $my_recursive);
+            }
         } elseif (($img_without == 2) && $this->request->hasArgument('replace_empty_meta')) {
             // title-Tags setzen. In der sys_file_reference
             foreach ($finalArray as $key => $refArray) {
@@ -646,9 +653,9 @@ class SessionController extends ActionController
                 }
             }
             $finalArray = $this->sessionRepository->getImagesWithout($img_without, $img_other);
-        }
-        if (count($finalArray) > 0 && $my_recursive > 0) {
-            $finalArray = $this->sessionRepository->filterPagesRecursive($finalArray, $my_recursive);
+            if (count($finalArray) > 0 && $my_recursive > 0) {
+                $finalArray = $this->sessionRepository->filterPagesRecursive($finalArray, $my_recursive);
+            }
         }
 
         if (!$finalArray) {
@@ -865,8 +872,12 @@ class SessionController extends ActionController
         }
 
         $delfile = '';
+        $delAllFiles = false;
         if ($this->request->hasArgument('delfile')) {
             $delfile = $this->request->getArgument('delfile');
+        }
+        if ($this->request->hasArgument('delthatfile2')) {
+            $delAllFiles = true;
         }
         $count = 0;
         $finalArray = [];
@@ -896,7 +907,7 @@ class SessionController extends ActionController
             if (!isset($sys_file_ref[$currentFile])) {
                 if (isset($sys_file[$currentFile])) {
                     if ($delfile && is_numeric($delfile) && $delfile == $sys_file[$currentFile]['uid']) {
-                        $this->sessionRepository->delMissingImage($delfile, false);
+                        $this->sessionRepository->delMissingImage($sys_file[$currentFile]['uid'], false);
                         $this->addFlashMessage(
                             $this->getLanguageService()->sL(self::LLPATH . 'message.filedel1a') .
                             $delfile .
@@ -906,6 +917,9 @@ class SessionController extends ActionController
                             $this->getLanguageService()->sL(self::LLPATH . 'message.filedel1b') .
                             $currentFile .
                             $this->getLanguageService()->sL(self::LLPATH . 'message.filedel2b'));
+                    } elseif ($delAllFiles) {
+                        $this->sessionRepository->delMissingImage($sys_file[$currentFile]['uid'], false);
+                        unlink($file);
                     } else {
                         $finalArray[$count] = [];
                         $finalArray[$count]['identifier'] = $currentFile;
@@ -918,6 +932,8 @@ class SessionController extends ActionController
                             $this->getLanguageService()->sL(self::LLPATH . 'message.filedel1b') .
                             $currentFile .
                             $this->getLanguageService()->sL(self::LLPATH . 'message.filedel2b'));
+                    } elseif ($delAllFiles) {
+                        unlink($file);
                     } else {
                         $finalArray[$count] = [];
                         $finalArray[$count]['identifier'] = $currentFile;
@@ -926,6 +942,9 @@ class SessionController extends ActionController
                 }
                 $count++;
             }
+        }
+        if ($delAllFiles) {
+            $this->addFlashMessage($this->getLanguageService()->sL(self::LLPATH . 'message.addFilesDeleted'));
         }
 
         $arrayPaginator = new ArrayPaginator($finalArray, $currentPage, $this->settings['pagebrowser']['itemsPerPage']);

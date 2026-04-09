@@ -5,7 +5,8 @@
 Changelog
 =========
 Version 6.2.3/4:
-Possibility added, to delete a file from the "unused files list".
+Possibility added, to delete files from the "unused files list".
+Bugfix: don´t ignore search-parameters when changing something.
 
 Version 6.2.0/1:
 New tool: show unused files in fileadmin-folder.
