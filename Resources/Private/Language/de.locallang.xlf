@@ -306,7 +306,7 @@
 				<target>Achtung: es werden Dateien ignoriert, die versteckt sind oder index.html heißen. Und es könnte sein, dass manche der Dateien verwendet werden, obwohl sie nicht in sys_file_reference gelistet sind!</target>
 			</trans-unit>
 			<trans-unit id="note.fileadmin2">
-				<target>Tipp: vor Benutzung dieses Skripts sollte man den Planer "Dateiabstraktionsschicht: Speicherindex aktualisieren (scheduler)" ausführen!</target>
+				<target>Tipp: vor Benutzung dieses Skripts sollte man den Planer "Dateiabstraktionsschicht: Speicherindex aktualisieren (scheduler)" ausführen! Ggf. auch ein DB-Backup erstellen.</target>
 			</trans-unit>
 			<trans-unit id="message.addFilesDeleted">
 				<target>Alle unbenutzten Dateien dieses Dateispeichers gelöscht!</target>

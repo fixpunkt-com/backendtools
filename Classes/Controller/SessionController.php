@@ -883,6 +883,11 @@ class SessionController extends ActionController
         $finalArray = [];
         $resourceRepository = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\StorageRepository::class);
         $defaultStorage = $resourceRepository->getDefaultStorage();
+        // TODO
+/*        $allStorages = $resourceRepository->findAll();
+        foreach ($allStorages as $storage) {
+            echo $storage->getUid() . $storage->getName();
+        } */
         if ($defaultStorage instanceof \TYPO3\CMS\Core\Resource\ResourceStorage) {
             $storage = substr($defaultStorage->getConfiguration()["basePath"], 0, -1);;
             $defaultStorageUid = $defaultStorage->getUid();
