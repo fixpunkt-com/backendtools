@@ -819,7 +819,7 @@ class SessionController extends ActionController
             $new = true;
             $default = GeneralUtility::makeInstance(Session::class);
             $default->setAction('fileadmin');
-            $default->setValue1(0);
+            $default->setValue1(1);
             $default->setValue2(0);
             $default->setValue3(0);
         } else {
@@ -847,6 +847,12 @@ class SessionController extends ActionController
             }
         } else {
             $this->settings['pagebrowser']['itemsPerPage'] = $my_page;
+        }
+        if ($this->request->hasArgument('my_storage')) {
+            $storageUid = (int)($this->request->getArgument('my_storage'));
+            $default->setValue1($storageUid);
+        } else {
+            $storageUid = $default->getValue1();
         }
         if ($this->request->hasArgument('ignore_underscore')) {
             $ignore_underscore = (int)($this->request->getArgument('ignore_underscore'));
@@ -881,26 +887,22 @@ class SessionController extends ActionController
         }
         $count = 0;
         $finalArray = [];
+        $storageArray = [];
         $resourceRepository = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\StorageRepository::class);
-        $defaultStorage = $resourceRepository->getDefaultStorage();
-        // TODO
-/*        $allStorages = $resourceRepository->findAll();
-        foreach ($allStorages as $storage) {
-            echo $storage->getUid() . $storage->getName();
-        } */
-        if ($defaultStorage instanceof \TYPO3\CMS\Core\Resource\ResourceStorage) {
-            $storage = substr($defaultStorage->getConfiguration()["basePath"], 0, -1);;
-            $defaultStorageUid = $defaultStorage->getUid();
-        } else {
-            $storage = 'fileadmin';
-            $defaultStorageUid = 0;
+        $allStorages = $resourceRepository->findAll();
+        foreach ($allStorages as $storageObject) {
+            $storageArray[$storageObject->getUid()] = substr($storageObject->getConfiguration()["basePath"], 0, -1);
+            if ($storageObject->getUid() == $storageUid) {
+                $storage = $storageArray[$storageUid];
+            }
         }
-        $dbArray1 = $this->sessionRepository->getAllFilereferences($defaultStorageUid);
+        ksort($storageArray);
+        $dbArray1 = $this->sessionRepository->getAllFilereferences($storageUid);
         $sys_file_ref = [];
         foreach ($dbArray1 as $row) {
             $sys_file_ref[$row['identifier']] = $row;
         }
-        $dbArray2 = $this->sessionRepository->getAllFiles($defaultStorageUid);
+        $dbArray2 = $this->sessionRepository->getAllFiles($storageUid);
         $sys_file = [];
         foreach ($dbArray2 as $row) {
             $sys_file[$row['identifier']] = $row;
@@ -956,6 +958,9 @@ class SessionController extends ActionController
         $pagination = new SimplePagination($arrayPaginator);
 
         $this->moduleTemplate->assign('count', count($finalArray));
+        $this->moduleTemplate->assign('storage', $storage);
+        $this->moduleTemplate->assign('storageUid', $storageUid);
+        $this->moduleTemplate->assign('storages', $storageArray);
         $this->moduleTemplate->assign('files', $finalArray);
         $this->moduleTemplate->assign('paginator', $arrayPaginator);
         $this->moduleTemplate->assign('pagination', $pagination);
@@ -965,7 +970,6 @@ class SessionController extends ActionController
         $this->moduleTemplate->assign('pageStart', $my_page * ($currentPage-1));
         $this->moduleTemplate->assign('ignore_underscore', $ignore_underscore);
         $this->moduleTemplate->assign('ignore_nouid', $ignore_nouid);
-        $this->moduleTemplate->assign('storage', $storage);
         $this->moduleTemplate->assign('settings', $this->settings);
         $this->moduleTemplate->assign('action', 'fileadmin');
         $this->addDocHeaderDropDown('fileadmin');

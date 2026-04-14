@@ -76,14 +76,14 @@
 				<target>Finde benutzte Bilder ohne title- oder alt-Text</target>
 			</trans-unit>
 			<trans-unit id="title.fileadmin">
-				<source>Show unused files in /fileadmin and other storages</source>
-				<target>Zeige unbenutzte Dateien in /fileadmin (bzw. im default Storage)</target>
+				<source>Show unused files in a storages</source>
+				<target>Zeige unbenutzte Dateien in einem Dateispeicher</target>
 			</trans-unit>
 			<trans-unit id="title.missing">
 				<target>Finde fehlende Bilder/Dateien und zeige, wo sie benutzt werden</target>
 			</trans-unit>
 			<trans-unit id="title.layouts">
-				<target>Zeige wo (Backend-)Layouts benutzt werden</target>
+				<target>Zeige, wo (Backend-)Layouts benutzt werden</target>
 			</trans-unit>
 			<trans-unit id="title.redirects">
 				<target>Füge einfache .htaccess-Weiterleitungen zu sys_redirects hinzu</target>
@@ -279,7 +279,7 @@
 				<target>Kopiere die Regeln von deiner .htaccess und platziere die Zeilen in einer Datei im fileadmin-Ordner (z.B. redirects.txt).</target>
 			</trans-unit>
 			<trans-unit id="button.delete_files">
-				<target>Lösche ausgewählten Eintrag (in sys_file, sys_file_metadata und) im Standard-Dateispeicher</target>
+				<target>Lösche ausgewählten Eintrag (in sys_file, sys_file_metadata und) in diesem Dateispeicher</target>
 			</trans-unit>
 			<trans-unit id="button.delete_all_files">
 				<target>Lösche alle unbenutzten Dateien in diesem Dateispeicher</target>
@@ -294,7 +294,10 @@
 				<target>Datei "</target>
 			</trans-unit>
 			<trans-unit id="message.filedel2b">
-				<target>" im Standard-Dateispeicher gelöscht.</target>
+				<target>" im ausgewählten Dateispeicher gelöscht.</target>
+			</trans-unit>
+			<trans-unit id="option.storage">
+				<target>Dateispeicher</target>
 			</trans-unit>
 			<trans-unit id="option.ignore_underscore">
 				<target>Ignoriere Ordner, die mit einem Unterstrich anfangen (_processed_ wird dennoch ignoriert)</target>

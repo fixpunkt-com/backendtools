@@ -61,7 +61,7 @@
 				<source>Find used images without title- or alt-text</source>
 			</trans-unit>
 			<trans-unit id="title.fileadmin">
-				<source>Show unused files in /fileadmin (default storage)</source>
+				<source>Show unused files in a storage</source>
 			</trans-unit>
 			<trans-unit id="title.layouts">
 				<source>Show where (backend) layouts are used</source>
@@ -244,7 +244,7 @@
 				<source>Copy that rules from your .htaccess and place the new file in your fileadmin-folder (e.g. redirects.txt).</source>
 			</trans-unit>
 			<trans-unit id="button.delete_files">
-				<source>Delete selected entry in (sys_file, sys_file_metadata and in) the default-storage</source>
+				<source>Delete selected entry in (sys_file, sys_file_metadata and in) this storage</source>
 			</trans-unit>
 			<trans-unit id="button.delete_all_files">
 				<source>Delete all unused files in this storage</source>
@@ -259,7 +259,10 @@
 				<source>File "</source>
 			</trans-unit>
 			<trans-unit id="message.filedel2b">
-				<source>" in default-storage deleted.</source>
+				<source>" in selected storage deleted.</source>
+			</trans-unit>
+			<trans-unit id="option.storage">
+				<source>Storage</source>
 			</trans-unit>
 			<trans-unit id="option.ignore_underscore">
 				<source>Ignore folders that starts with the underscore (_processed_ will be ignored nevertheless)</source>

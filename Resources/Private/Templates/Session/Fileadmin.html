@@ -32,7 +32,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4"> </div>
+            <div class="col-md-4">
+                <f:translate key="option.storage"/>: &nbsp;
+                <f:form.select name="my_storage" options="{storages}" id="my_storage" value="{storageUid}" />
+            </div>
             <div class="col-md-8">
                 <div style="margin: 10px 0;"><f:translate key="option.ignore_nouid"/>: &nbsp;
                     <label class="checkbox-inline">

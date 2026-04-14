@@ -37,7 +37,7 @@
 				<source>Show where missing files are used</source>
 			</trans-unit>
 			<trans-unit id="module.fileadmin" xml:space="preserve">
-				<source>Show where unused files are in /fileadmin</source>
+				<source>Show where unused files are in a storage</source>
 			</trans-unit>
 		</body>
 	</file>
