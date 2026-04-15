@@ -271,7 +271,7 @@
 				<source>Ignore files without sys_file uid</source>
 			</trans-unit>
 			<trans-unit id="note.fileadmin1">
-				<source>Note: hidden files and index.html files are ignored. And think about the possibility, that not all used files are listed in sys_file_references!</source>
+				<source>Note: hidden files and index.html files are ignored. Only relative storages are supported (e.g. myPath/folder/). And think about the possibility, that not all used files are listed in sys_file_references!</source>
 			</trans-unit>
 			<trans-unit id="note.fileadmin2">
 				<source>Hint: use the task "File Abstraction Layer: Update storage index (scheduler)" first, before using this script! And think about an db-backup.</source>
