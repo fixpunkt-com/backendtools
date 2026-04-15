@@ -854,6 +854,9 @@ class SessionController extends ActionController
         } else {
             $storageUid = $default->getValue1();
         }
+        if (!$storageUid) {
+            $storageUid = 1;
+        }
         if ($this->request->hasArgument('ignore_underscore')) {
             $ignore_underscore = (int)($this->request->getArgument('ignore_underscore'));
             $default->setValue2($ignore_underscore);
