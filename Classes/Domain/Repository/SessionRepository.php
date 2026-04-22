@@ -65,14 +65,14 @@ class SessionRepository extends Repository
     }
 
     /**
-     * Get list of all used CTypes and list_types
+     * Get list of all used CTypes
      *
      * @return array
      */
     public function getAllTypes()
     {
         $types = [];
-        $types['0#0'] = 'Select CType/list_type ...';
+        $types['0#0'] = 'Select CType ...';
         $exclude_ctypes = [
             'html', 'text', 'image', 'textpic', 'textmedia', 'bullets', 'menu',
             'search', 'mailform', 'indexed_search', 'login', 'header', 'rte',
@@ -86,28 +86,17 @@ class SessionRepository extends Repository
             ->removeAll();
         $res = $queryBuilder ->select(...[
             'CType',
-            'list_type',
         ]) -> from('tt_content');
         $res -> andWhere(...[
             $queryBuilder->expr()->notIn('CType', $queryBuilder->createNamedParameter($exclude_ctypes, Connection::PARAM_STR_ARRAY)),
         ]);
-        $res -> orderBy('list_type', 'ASC') -> addOrderBy('CType');
-        //$res -> groupBy('CType');
+        $res -> addOrderBy('CType', 'ASC');
         //print_r($res->getSQL());
         $result = $res-> executeQuery()->fetchAllAssociative();
 
-        $listDone = false;
-        $ctypeDone = false;
         foreach ($result as $row) {
-            if ($row['list_type'] && $row['CType'] == 'list') {
-                if (!$listDone && $ctypeDone) {
-                    $types['3#0'] = '--- list_types ---';
-                }
-                $types['1#' . $row['list_type']] = $row['list_type'];
-                $listDone = true;
-            } elseif ($row['CType'] && $row['CType'] != 'list') {
+            if ($row['CType'] && $row['CType'] != 'list') {
                 $types['2#' . $row['CType']] = $row['CType'];
-                $ctypeDone = true;
             }
         }
         return $types;
@@ -155,7 +144,6 @@ class SessionRepository extends Repository
             'tt_content.header',
             'tt_content.sys_language_uid',
             'tt_content.CType',
-            'tt_content.list_type',
             'tt_content.pi_flexform',
             'pages.title',
             'pages.slug',
@@ -213,27 +201,12 @@ class SessionRepository extends Repository
 
         // Das Haupt-Where
         if ($my_value) {
-            if ($my_type == 2) {
-                $res -> andWhere(
-                    $queryBuilder->expr()->like('tt_content.CType', $queryBuilder->createNamedParameter($queryBuilder->escapeLikeWildcards($my_value) . '%')),
-                );
-            } elseif ($my_type == 1) {
-                $res -> andWhere(
-                    $queryBuilder->expr()->like('tt_content.list_type', $queryBuilder->createNamedParameter($queryBuilder->escapeLikeWildcards($my_value) . '%')),
-                );
-                $res -> andWhere(
-                    $queryBuilder->expr()->eq('tt_content.CType', $queryBuilder->createNamedParameter('list')),
-                );
-            }
+            $res -> andWhere(
+                $queryBuilder->expr()->like('tt_content.CType', $queryBuilder->createNamedParameter($queryBuilder->escapeLikeWildcards($my_value) . '%')),
+            );
         } else {
             $res -> andWhere(...[
-                $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->and(
-                        $queryBuilder->expr()->neq('tt_content.list_type', $queryBuilder->createNamedParameter('')),
-                        $queryBuilder->expr()->neq('tt_content.list_type', $queryBuilder->createNamedParameter('0')),
-                    ),
-                    $queryBuilder->expr()->notIn('tt_content.CType', $queryBuilder->createNamedParameter($exclude_ctypes, Connection::PARAM_STR_ARRAY)),
-                ),
+                $queryBuilder->expr()->notIn('tt_content.CType', $queryBuilder->createNamedParameter($exclude_ctypes, Connection::PARAM_STR_ARRAY)),
             ]);
         }
 
@@ -257,8 +230,7 @@ class SessionRepository extends Repository
             3 => 'tt_content.colPos',
             4 => 'tt_content.header',
             5 => 'tt_content.CType',
-            6 => 'tt_content.list_type',
-            7 => 'pages.title',
+            6 => 'pages.title',
             default => 'tt_content.pid',
         };
         if ($my_orderby == 0) {
@@ -334,7 +306,6 @@ class SessionRepository extends Repository
             'tt_content.header',
             'tt_content.sys_language_uid',
             'tt_content.CType',
-            'tt_content.list_type',
             'tt_content.tstamp AS ttstamp',
             'pages.title',
             'pages.slug',

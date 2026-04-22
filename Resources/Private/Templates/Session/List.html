@@ -16,14 +16,9 @@
 		<f:form.select name="my_value3001" options="{types}" id="mytype3001" />
 		<div style="margin: 5px 0;">
 		(
-		<label class="checkbox-inline">
-			<f:form.radio name="my_type" value="1" checked="{my_type} == 1" id="mytype1" /> list_type  &nbsp;
-            <f:translate key="or" />
-		</label>
-		<label class="checkbox-inline">
-			<f:form.radio name="my_type" value="2" checked="{my_type} == 2" id="mytype2" /> CType*:
-		</label>
-		<f:form.textfield name="my_value" value="{my_value}" size="19" id="mytypeval" />
+			<f:translate key="or" />* &nbsp;
+			<f:form.hidden name="my_type" value="2" id="mytype2" />
+			<f:form.textfield name="my_value" value="{my_value}" size="19" id="mytypeval" />
 		)
 		</div>
 	</div>
@@ -34,7 +29,7 @@
 		<f:form.textfield name="my_exclude" value="{my_exclude}" /> &nbsp;
 	</div>
 	<div style="margin: 10px 0;"><f:translate key="option.order_by" />****:
-		<f:form.select name="my_orderby" options="{0: 'pid', 1: 'uid', 2: 'sys_language_uid', 3: 'colPos', 4: 'header', 5: 'CType', 6: 'list_type', 7: 'page title'}" value="{my_orderby}" /> &nbsp;
+		<f:form.select name="my_orderby" options="{0: 'pid', 1: 'uid', 2: 'sys_language_uid', 3: 'colPos', 4: 'header', 5: 'CType', 6: 'page title'}" value="{my_orderby}" /> &nbsp;
 		<f:form.select name="my_direction" options="{0: 'ascending', 1: 'descending'}" value="{my_direction}" /> &nbsp;
 	</div>
 </div><div class="col-md-6">
@@ -102,8 +97,8 @@
 	<f:then>
 		<textarea name="dummy" rows="12" cols="120">
 <f:translate key="content_elements" />;;;;;;;;;<f:translate key="pages" />;;
-uid;lang.;colPos;deleted;hidden;header;CType;list_type;FlexForm actions;uid;deleted;hidden;title;link
-<f:for each="{pages}" as="page" iteration="iterator">{page.uid};{page.sys_language_uid};{page.colPos};{page.ttdeleted};{page.tthidden};"{page.csvheader}";{page.CType};{page.list_type};"<f:format.raw>{page.actions}</f:format.raw>";{page.pid};{page.pdeleted};{page.phidden};"{page.csvtitle}";{page.domain}{page.slug}
+uid;lang.;colPos;deleted;hidden;header;CType;FlexForm actions;uid;deleted;hidden;title;link
+<f:for each="{pages}" as="page" iteration="iterator">{page.uid};{page.sys_language_uid};{page.colPos};{page.ttdeleted};{page.tthidden};"{page.csvheader}";{page.CType};"<f:format.raw>{page.actions}</f:format.raw>";{page.pid};{page.pdeleted};{page.phidden};"{page.csvtitle}";{page.domain}{page.slug}
 </f:for></textarea>
 	</f:then>
 	<f:else>
@@ -113,7 +108,7 @@ uid;lang.;colPos;deleted;hidden;header;CType;list_type;FlexForm actions;uid;dele
 		<table class="table">
 		<thead>
 			<tr>
-				<th colspan="8" style="text-align:center;background-color:#cfc;color:#000;"><f:translate key="content_elements" /></th>
+				<th colspan="7" style="text-align:center;background-color:#cfc;color:#000;"><f:translate key="content_elements" /></th>
 				<th colspan="4" style="text-align:center;background-color:#ccf;color:#000;"><f:translate key="pages" /></th>
 			</tr>
 			<tr>
@@ -123,7 +118,6 @@ uid;lang.;colPos;deleted;hidden;header;CType;list_type;FlexForm actions;uid;dele
 				<th>deleted / hidden</th>
 				<th>header</th>
 				<th>CType</th>
-				<th>list_type</th>
 				<th>Misc</th>
 				<th>uid</th>
 				<th>deleted / hidden</th>
@@ -145,7 +139,6 @@ uid;lang.;colPos;deleted;hidden;header;CType;list_type;FlexForm actions;uid;dele
 						<f:if condition="{page.tthidden} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then><f:else>{f:translate(key: 'no')}</f:else></f:if></td>
 					<td>{page.header}</td>
 					<td>{page.CType}</td>
-					<td>{page.list_type}</td>
 					<td><f:format.raw>{page.actions}</f:format.raw></td>
 					<td>
 						<ex:editLink action="edit" table="pages" uid="{page.pl10n}" language="{page.sys_language_uid}" returnUrl="mod.php?M=tools_BackendtoolsMod1&tx_backendtools_tools_backendtoolsmod1[action]=list">

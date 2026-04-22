@@ -82,8 +82,8 @@
 	<f:then>
 		<textarea name="dummy" rows="12" cols="120">
 <f:translate key="content_elements" />;;;;;;;;;<f:translate key="pages" />;;;
-uid;tstamp;lang.;colPos;deleted;hidden;header;CType;list_type;uid;tstamp;deleted;hidden;title;link
-<f:for each="{pages}" as="page" iteration="iterator"><f:if condition="{page.uid}"><f:then>{page.uid};"<f:format.date format='d.m.Y H:i:s'>{page.ttstamp}</f:format.date>";{page.sys_language_uid};{page.colPos};{page.ttdeleted};{page.tthidden};"{page.csvheader}";{page.CType};{page.list_type}</f:then><f:else>;;;;;;;;</f:else></f:if>;{page.pid};"<f:format.date format='d.m.Y H:i:s'>{page.ptstamp}</f:format.date>";{page.pdeleted};{page.phidden};"{page.csvtitle}";{page.domain}{page.slug}
+uid;tstamp;lang.;colPos;deleted;hidden;header;CType;uid;tstamp;deleted;hidden;title;link
+<f:for each="{pages}" as="page" iteration="iterator"><f:if condition="{page.uid}"><f:then>{page.uid};"<f:format.date format='d.m.Y H:i:s'>{page.ttstamp}</f:format.date>";{page.sys_language_uid};{page.colPos};{page.ttdeleted};{page.tthidden};"{page.csvheader}";{page.CType}</f:then><f:else>;;;;;;;</f:else></f:if>;{page.pid};"<f:format.date format='d.m.Y H:i:s'>{page.ptstamp}</f:format.date>";{page.pdeleted};{page.phidden};"{page.csvtitle}";{page.domain}{page.slug}
 </f:for></textarea>
 	</f:then>
 	<f:else>
@@ -93,7 +93,7 @@ uid;tstamp;lang.;colPos;deleted;hidden;header;CType;list_type;uid;tstamp;deleted
 		<table class="table">
 		<thead>
 			<tr>
-				<th colspan="8" style="text-align:center;background-color:#cfc;color:#000;"><f:translate key="content_elements" /></th>
+				<th colspan="7" style="text-align:center;background-color:#cfc;color:#000;"><f:translate key="content_elements" /></th>
 				<th colspan="5" style="text-align:center;background-color:#ccf;color:#000;"><f:translate key="pages" /></th>
 			</tr>
 			<tr>
@@ -104,7 +104,6 @@ uid;tstamp;lang.;colPos;deleted;hidden;header;CType;list_type;uid;tstamp;deleted
 				<th>deleted / hidden</th>
 				<th>header</th>
 				<th>CType</th>
-				<th>list_type</th>
 				<th>uid</th>
 				<th>tstamp</th>
 				<th>deleted / hidden</th>
@@ -128,9 +127,8 @@ uid;tstamp;lang.;colPos;deleted;hidden;header;CType;list_type;uid;tstamp;deleted
 							<f:if condition="{page.tthidden} == 1"><f:then><span style="color:#bb0000;font-weight:bold;">{f:translate(key: 'yes')}</span></f:then><f:else>{f:translate(key: 'no')}</f:else></f:if></td>
 						<td>{page.header}</td>
 						<td>{page.CType}</td>
-						<td>{page.list_type}</td>
 					</f:then><f:else>
-						<td colspan="8"></td>
+						<td colspan="7"></td>
 					</f:else></f:if>
 					<td>
 						<ex:editLink action="edit" table="pages" uid="{page.pl10n}" language="{page.sys_language_uid}" returnUrl="mod.php?M=tools_BackendtoolsMod1&tx_backendtools_tools_backendtoolsmod1[action]=latest">
