@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2016-06-15T15:56:47Z" product-name="backendtools">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2026-04-22T15:56:47Z" product-name="backendtools">
 		<header/>
 		<body>
 			<trans-unit id="tx_backendtools_domain_model_session">

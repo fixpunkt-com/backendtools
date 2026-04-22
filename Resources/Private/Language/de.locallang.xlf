@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2016-06-15T15:56:47Z" product-name="backendtools">
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2026-04-22T15:56:47Z" product-name="backendtools">
 		<header/>
 		<body>
 			<trans-unit id="tx_backendtools_domain_model_session">
@@ -171,6 +171,7 @@
 				<target>Weiterleitung(en) gefunden</target>
 			</trans-unit>
 			<trans-unit id="1star">
+				<source>this is a LIKE 'sword%' search.</source>
 				<target>dies eine LIKE 'sword%' Suche.</target>
 			</trans-unit>
 			<trans-unit id="2star">
@@ -219,7 +220,7 @@
 				<target>Bilder/Dateien-Einträge gefunden, die benutzt werden.</target>
 			</trans-unit>
 			<trans-unit id="not_image_entries">
-				<target>Bilder/Dateien-Einträge gefunden, die nicht im default-Storage benutzt werden.</target>
+				<target>Bilder/Dateien-Einträge gefunden, die nicht im ausgewählten Dateispeicher benutzt werden.</target>
 			</trans-unit>
 			<trans-unit id="image_entries_not_used">
 				<target>fehlende Bilder/Dateien werden nicht benutzt (in tt_content)</target>
