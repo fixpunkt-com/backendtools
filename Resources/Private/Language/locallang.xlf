@@ -184,7 +184,7 @@
 				<source>image(s)/file(s) found, that are used.</source>
 			</trans-unit>
 			<trans-unit id="not_image_entries">
-				<source>image(s)/file(s) found, that are not used in the selected storage.</source>
+				<source>image(s)/file(s) found, that are not used in the default storage.</source>
 			</trans-unit>
 			<trans-unit id="image_entries_not_used">
 				<source>missing file(s) is/are not used (in tt_content)</source>
