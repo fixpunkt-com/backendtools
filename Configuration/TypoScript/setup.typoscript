@@ -1,4 +1,3 @@
- # Module configuration
 module.tx_backendtools {
 	persistence {
 		storagePid = {$module.tx_backendtools_mod1.persistence.storagePid}

@@ -35,7 +35,7 @@ Tool 9: helps you to delete unused files. Go to “Admin tools” → DB check�
 This tool helps you to delete these files in the uploads-folder.
 Note: this tool was removed in version 6.0.0, because the uploads-folder is no longer in use.
 
-Tool 10: show unused files in the default-storage (fileadmin).
+Tool 10: show unused files in a file-storage.
 
 Since version 4.2.0 there are some dashboard widgets available too.
 
