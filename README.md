@@ -1,6 +1,6 @@
 # backendtools
 
-Version 7.0.0
+Version 7.0.1
 
 9 admin tools for extensions, pages, (backend) layouts, slug, redirects, files, images and links:
 extension-list, recent pages and content elements, used (backend) layouts,
@@ -54,7 +54,7 @@ Version 6.2.0/2:
 Version 6.2.3/4/5/6:
 - Possibility added, to delete files from the "unused files list".
 - Possibility added, to select storages in the "unused files list".
-- Bugfix: don´t ignore search-parameters when changing something.
+- Bugfix: don’t ignore search-parameters when changing something.
 
 Version 7.0.0:
 - First version for TYPO3 14.
