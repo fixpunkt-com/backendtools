@@ -1,6 +1,6 @@
 # backendtools
 
-Version 7.0.1
+Version 7.0.2
 
 9 admin tools for extensions, pages, (backend) layouts, slug, redirects, files, images and links:
 extension-list, recent pages and content elements, used (backend) layouts,
@@ -59,5 +59,5 @@ Version 6.2.3/4/5/6:
 Version 7.0.0:
 - First version for TYPO3 14.
 
-Version 7.0.1:
-- Set default settings if there are no settings.
+Version 7.0.2:
+- Settings works now again.

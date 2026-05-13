@@ -4,8 +4,8 @@
 
 Changelog
 =========
-Version 7.0.1:
-Set default settings if there are no settings.
+Version 7.0.2:
+Settings works now again.
 
 Version 7.0.0:
 First version for TYPO3 14.

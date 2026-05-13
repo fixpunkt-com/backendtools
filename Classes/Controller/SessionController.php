@@ -109,7 +109,6 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
-        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -271,7 +270,6 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
-        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -443,7 +441,6 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
-        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -544,7 +541,6 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
-        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -704,7 +700,6 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
-        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -832,7 +827,6 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
-        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -1004,7 +998,6 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
-        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -1135,7 +1128,6 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
-        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('method')) {
             $method = (int)($this->request->getArgument('method'));
@@ -1273,7 +1265,6 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
-        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -1579,17 +1570,5 @@ class SessionController extends ActionController
     protected function getModuleUri(?string $action = null): string
     {
         return $this->uriBuilder->uriFor($action, null, 'Session', 'mod1');
-    }
-
-    protected function setDefaultSettings(): void
-    {
-        if (!$this->settings || count($this->settings) == 0) {
-            $this->settings = [];
-            $this->settings['pagebrowser'] = [];
-            $this->settings['pagebrowser']['itemsPerPage'] = 25;
-            $this->settings['pagebrowser']['insertAbove'] = 0;
-            $this->settings['pagebrowser']['insertBelow'] = 1;
-            $this->settings['pagebrowser']['maximumNumberOfLinks'] = 25;
-        }
     }
 }
