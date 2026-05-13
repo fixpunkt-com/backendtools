@@ -16,6 +16,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Install\Service\SessionService;
 
 /***************************************************************
  *
@@ -108,6 +109,7 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
+        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -269,6 +271,7 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
+        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -440,6 +443,7 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
+        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -540,6 +544,7 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
+        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -699,6 +704,7 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
+        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -826,6 +832,7 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
+        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -997,6 +1004,7 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
+        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -1127,6 +1135,7 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
+        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('method')) {
             $method = (int)($this->request->getArgument('method'));
@@ -1264,6 +1273,7 @@ class SessionController extends ActionController
             $new = false;
             $default = $result[0];
         }
+        $this->setDefaultSettings();
 
         if ($this->request->hasArgument('currentPage')) {
             $currentPage = (int)($this->request->getArgument('currentPage'));
@@ -1569,5 +1579,17 @@ class SessionController extends ActionController
     protected function getModuleUri(?string $action = null): string
     {
         return $this->uriBuilder->uriFor($action, null, 'Session', 'mod1');
+    }
+
+    protected function setDefaultSettings(): void
+    {
+        if (!$this->settings || count($this->settings) == 0) {
+            $this->settings = [];
+            $this->settings['pagebrowser'] = [];
+            $this->settings['pagebrowser']['itemsPerPage'] = 25;
+            $this->settings['pagebrowser']['insertAbove'] = 0;
+            $this->settings['pagebrowser']['insertBelow'] = 1;
+            $this->settings['pagebrowser']['maximumNumberOfLinks'] = 25;
+        }
     }
 }

@@ -58,3 +58,6 @@ Version 6.2.3/4/5/6:
 
 Version 7.0.0:
 - First version for TYPO3 14.
+
+Version 7.0.1:
+- Set default settings if there are no settings.
