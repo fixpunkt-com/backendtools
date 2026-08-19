@@ -8,6 +8,7 @@ use Fixpunkt\Backendtools\Domain\Repository\SessionRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
+use TYPO3\CMS\Backend\Template\Components\ComponentFactory;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
@@ -73,7 +74,11 @@ class SessionController extends ActionController
      */
     protected $backendUserRepository;
 
-    public function __construct(protected readonly ModuleTemplateFactory $moduleTemplateFactory, SessionRepository $sessionRepository, BackendUserRepository $backendUserRepository)
+    public function __construct(
+        protected readonly ModuleTemplateFactory $moduleTemplateFactory,
+        protected readonly ComponentFactory $componentFactory,
+        SessionRepository $sessionRepository,
+        BackendUserRepository $backendUserRepository)
     {
         $this->sessionRepository = $sessionRepository;
         $this->backendUserRepository = $backendUserRepository;
@@ -1551,18 +1556,17 @@ class SessionController extends ActionController
     protected function addDocHeaderDropDown(string $currentAction): void
     {
         $languageService = $this->getLanguageService();
-        $actionMenu = $this->moduleTemplate->getDocHeaderComponent()->getMenuRegistry()->makeMenu();
+        $actionMenu = $this->componentFactory->createMenu();
         $actionMenu->setIdentifier('backendtoolsSelector');
         $actions = ['list', 'latest', 'pagesearch', 'layouts', 'images', 'missing', 'fileadmin', 'redirects', 'redirectscheck'];
         foreach ($actions as $action) {
-            $actionMenu->addMenuItem(
-                $actionMenu->makeMenuItem()
-                    ->setTitle($languageService->sL(
-                        'LLL:EXT:backendtools/Resources/Private/Language/locallang_mod1.xlf:module.' . $action,
-                    ))
-                    ->setHref($this->getModuleUri($action))
-                    ->setActive($currentAction === $action),
-            );
+            $menuItem = $this->componentFactory->createMenuItem()
+                ->setTitle($languageService->sL(
+                    'LLL:EXT:backendtools/Resources/Private/Language/locallang_mod1.xlf:module.' . $action,
+                ))
+                ->setHref($this->getModuleUri($action))
+                ->setActive($currentAction === $action);
+            $actionMenu->addMenuItem($menuItem);
         }
         $this->moduleTemplate->getDocHeaderComponent()->getMenuRegistry()->addMenu($actionMenu);
     }

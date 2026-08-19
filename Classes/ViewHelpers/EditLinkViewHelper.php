@@ -5,6 +5,7 @@ namespace Fixpunkt\Backendtools\ViewHelpers;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+use Psr\Http\Message\ServerRequestInterface;
 
 class EditLinkViewHelper extends AbstractTagBasedViewHelper
 {
@@ -22,6 +23,10 @@ class EditLinkViewHelper extends AbstractTagBasedViewHelper
      */
     public function render(): string
     {
+        $request = $this->getRequest();
+        /** @var \TYPO3\CMS\Core\Http\NormalizedParams $normalizedParams */
+        $normalizedParams = $request->getAttribute('normalizedParams');
+
         // Edit all icon:
         $urlParameters = [
             'edit' => [
@@ -32,10 +37,11 @@ class EditLinkViewHelper extends AbstractTagBasedViewHelper
             'columnsOnly' => '',
             'createExtension' => 0,
         ];
-        if ($this->additionalArguments['language'] > 0) {
+        if (isset($this->additionalArguments['language']) && $this->additionalArguments['language'] > 0) {
             $urlParameters['overrideVals']['pages']['sys_language_uid'] = $this->additionalArguments['language'];
         }
-        $urlParameters['returnUrl'] = GeneralUtility::getIndpEnv('REQUEST_URI');
+        // deprecated: $urlParameters['returnUrl'] = GeneralUtility::getIndpEnv('REQUEST_URI');
+        $urlParameters['returnUrl'] = $normalizedParams->getRequestUri();
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $uri = $uriBuilder->buildUriFromRoute('record_edit', $urlParameters);
 
@@ -43,5 +49,13 @@ class EditLinkViewHelper extends AbstractTagBasedViewHelper
         $this->tag->setContent($this->renderChildren());
         $this->tag->forceClosingTag(true);
         return $this->tag->render();
+    }
+
+    private function getRequest(): ServerRequestInterface|null
+    {
+        if ($this->renderingContext->hasAttribute(ServerRequestInterface::class)) {
+            return $this->renderingContext->getAttribute(ServerRequestInterface::class);
+        }
+        return null;
     }
 }

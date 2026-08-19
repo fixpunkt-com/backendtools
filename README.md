@@ -1,6 +1,6 @@
 # backendtools
 
-Version 7.0.2
+Version 7.1.0
 
 9 admin tools for extensions, pages, (backend) layouts, slug, redirects, files, images and links:
 extension-list, recent pages and content elements, used (backend) layouts,
@@ -61,3 +61,6 @@ Version 7.0.0:
 
 Version 7.0.2:
 - Settings works now again.
+
+Version 7.1.0:
+- Deprecated methods replaced. Pressing "Flush TYPO3 and PHP Cache" is needed after update.
